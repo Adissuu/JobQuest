@@ -1,5 +1,3 @@
-
-- Timothy Morvan ():
 ## Team Members
 | Names | Id | Git Username | Role |
 | :-: | :-: | :-: | :-: |
