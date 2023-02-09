@@ -1,9 +1,12 @@
 import Layout from "@/components/UI/Layout";
+import SignupComponent from "@/components/Utils/SignupComponent";
 
 const Signup = () => {
     return (
         <Layout>
-            <h1>Signup page</h1>
+            <div className="signComponent">
+                <SignupComponent/>
+            </div>
         </Layout>
     )
 }
