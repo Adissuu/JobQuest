@@ -5,8 +5,7 @@ const Signin = () => {
     return (
         <Layout>
             <div className="signComponent">
-                <SigninComponent/>
-
+                <SigninComponent />
             </div>
         </Layout>
     )

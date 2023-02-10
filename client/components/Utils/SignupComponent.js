@@ -18,7 +18,7 @@ const SignupComponent = () => {
 
 
     const handleSubmit = (e) => {
-       // e.preventDefault();
+        // e.preventDefault();
     };
 
 
@@ -27,29 +27,29 @@ const SignupComponent = () => {
             <div className="bg-white dark:bg-green-500 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <h1 className=''>Sign In</h1>
                 <form onSubmit={handleSubmit}>
-                <div className="mb-4">
+                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
                         <input value={name}
                             type="text"
-                            className="" />
+                            className="" readOnly />
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
                         <input value={email}
                             type="email"
-                            className="" />
+                            className="" readOnly />
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
                         <input value={password}
                             type="Password"
-                            className="" />
+                            className="" readOnly />
                     </div>
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
                         <input value={confirmPassword}
                             type="Password"
-                            className="" />
+                            className="" readOnly />
                     </div>
                     <div className='flex justify-center'>
                         <button className="">Sign Up</button>

@@ -20,7 +20,7 @@ a {
   text-decoration: none;
 }
 
-.nav{
+.nav {
   width: 100vw;
   height: 90px;
   display: flex;
@@ -28,14 +28,16 @@ a {
   justify-content: space-between;
   padding-right: 2rem;
   padding-left: 2rem;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
   font-family: 'Inter', sans-serif;
 }
 
-.signComponent{
+.signComponent {
   height: calc(100vh - 90px);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(../public/Signin-up/bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
