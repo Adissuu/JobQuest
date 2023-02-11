@@ -5,7 +5,7 @@ const Jobs = () => {
     return (
         <Layout pathname="jobs">
             <h1>Choose your adventure!</h1>
-            <JobList />
+                <JobList />
         </Layout>
     )
 }

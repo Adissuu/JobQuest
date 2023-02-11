@@ -11,6 +11,10 @@
     border-radius: 5px;
 }
 
+.jobitem:hover {
+    background-color: rgb(196, 196, 196);
+}
+
 .title {
     padding: 5px;
     padding-bottom: 0px;
@@ -19,4 +23,13 @@
 .company {
     padding-left: 5px;
     padding-bottom: 5px;
+}
+
+.scrollable {
+    height:85vh; /* or any value */
+    overflow-y: auto;
+}
+
+.jobcontainer {
+    display: inline-block;
 }
