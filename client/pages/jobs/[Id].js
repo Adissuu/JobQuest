@@ -10,7 +10,7 @@ const Jobs = () => {
         <Layout pathname="jobs">
             <h1>JobList with specific job description page</h1>
             <div className={styles.jobcontainer}>
-                {/* <JobList /> */}
+                <JobList />
                 <JobDescription id={router.asPath.substring(6)}/>
             </div>
         </Layout>
