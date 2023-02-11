@@ -31,5 +31,11 @@
 }
 
 .jobcontainer {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+}
+
+.jobdescription {
+    width:50%;
+    padding-left: 25px;
 }
