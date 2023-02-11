@@ -14,7 +14,7 @@ function JobList() {
   }
   let content;
   content = jobs.map((job) => (
-    <Link href={url+job.id}>
+    <Link  className={styles.jobitem} href={url+job.id}>
       <JobItem title={job.title} company={job.company} />
     </Link>
   ));

@@ -10,12 +10,12 @@ function JobDescription(props) {
     let url;
     url="view/"+props.id;
     if (router.asPath.indexOf("view")>-1) url = props.id;
-    return <Link href={url} className={styles.jobdescription}>
-        <div>{job.title}</div>
-        <div>{job.company}</div>
+    return <div className={styles.jobdescription}>
+        <Link href={url} className={styles.title}>{job.title}</Link>
+        <div className={styles.company}>{job.company}</div>
         <div>{job.description}</div>
-        <button>Apply</button>
-    </Link>
+        <button className={styles.applybtn}>Apply</button>
+    </div>
 }
 
 export default JobDescription;
