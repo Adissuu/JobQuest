@@ -15,7 +15,7 @@ const Header = ({pathname}) => {
             </Head>
             <header className="nav">
                 <Link href='/' className="flex items-center">
-                    <Image src={logo} height={50} width={50}/>
+                    <Image src={logo} height={50} width={50} alt="logo jobquest"/>
                     <h1 className="mx-2 text-2xl font-semibold hover:text-green-500
                     transition-colors">JobQuest</h1>
                 </Link>

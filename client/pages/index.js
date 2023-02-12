@@ -10,7 +10,7 @@ export default function Index() {
   return (
     <>
       <Layout>
-        <div className='flex items-center justify-evenly'>
+        <div className='items-center flex justify-evenly'>
           <div className='mx-4 flex flex-col items-center h-full'>
             <div>
               <h1 className='text-6xl font-bold'>JobQuest</h1>
@@ -19,10 +19,11 @@ export default function Index() {
             <Link href="/signup" className='hover:shadow-xl transition p-4 text-white rounded bg-orange-500 mt-36 font-bold text-2xl'>Start Now</Link>
           </div>
           <div className='pt-8'>
-            <Image src='/Landing_Page/hero.svg' width={650} height={650} />
+            <Image src='/Landing_Page/hero.svg' width={650} height={650} alt="Jobquest logo" priority/>
           </div>
         </div>
       </Layout>
     </>
   )
 }
+
