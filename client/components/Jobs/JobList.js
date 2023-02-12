@@ -9,12 +9,8 @@ function JobList() {
 
   let jobs = myJobs();
 
-  let url;
-  if (router.query.id) {
-    url = "";
-  } else {
-    url = "jobs/";
-  }
+  let url = "";
+  if (!router.query.id) url+="jobs/";
 
   let content;
   
