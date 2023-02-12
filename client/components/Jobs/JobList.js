@@ -6,15 +6,14 @@ import Link from "next/link.js";
 
 function JobList() {
   const router = useRouter();
-  console.log(router.asPath == "/jobs");
+
   let jobs = myJobs();
-  let url = "";
-  if (router.asPath=="/jobs") {
-    url = "/jobs/"
-  }
+
+  if (!router.query.id) return <div>Error message</div>
+
   let content;
   content = jobs.map((job) => (
-    <Link  className={styles.jobitem} href={url+job.id}>
+    <Link  key={job.id} className={styles.jobitem} href={router.query.id}>
       <JobItem title={job.title} company={job.company} />
     </Link>
   ));
