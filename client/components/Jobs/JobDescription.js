@@ -8,13 +8,10 @@ function JobDescription(props) {
 
     const job = findJob(router.query.id);
 
-    let url="";
-    if (router.pathname.indexOf("view")===-1) url+="view/";
-
     if (!job) return <div>Error message</div>
 
     return <div className={styles.jobdescription}>
-        <Link href={url+router.query.id} className={styles.title}>{job.title}</Link>
+        <Link href={"/jobs/view/"+job.id} className={styles.title}>{job.title}</Link>
         <div className={styles.company}>{job.company}</div>
         <div>{job.description}</div>
         <button className={styles.applybtn}>Apply</button>
