@@ -9,11 +9,17 @@ function JobList() {
 
   let jobs = myJobs();
 
-  if (!router.query.id) return <div>Error message</div>
+  let url;
+  if (router.query.id) {
+    url = "";
+  } else {
+    url = "jobs/";
+  }
 
   let content;
+  
   content = jobs.map((job) => (
-    <Link  key={job.id} className={styles.jobitem} href={router.query.id}>
+    <Link  key={job.id} className={styles.jobitem} href={url+job.id}>
       <JobItem title={job.title} company={job.company} />
     </Link>
   ));
