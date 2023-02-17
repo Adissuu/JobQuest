@@ -13,4 +13,4 @@ const Test = mongoose.model('test', TestSchema);
 module.exports = Test;
 
 
-mongoose.connect("mongodb+srv://softwareprocess:soen341!@jobquest.lwy8itm.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://softwareprocess:soen341@jobquest.lwy8itm.mongodb.net/?retryWrites=true&w=majority");

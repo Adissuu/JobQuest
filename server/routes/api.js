@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const Test = require('../models/test');
+const employer = require('../models/employer');
 
-router.get('/tests', (req, res, next) => {
-  test.find({}, 'action')
+router.get('/employers', (req, res, next) => {
+    employer.find({}, 'CompanyName')
     .then((data) => res.json(data))
     .catch(next);
 });
 
-router.post('/tests', (req, res, next) => {
-  if (req.body.action) {
-    test.create(req.body)
+router.post('/employers', (req, res, next) => {
+  if (req.body.CompanyName) {
+    employer.create(req.body)
       .then((data) => res.json(data))
       .catch(next);
   } else {
