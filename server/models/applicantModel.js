@@ -9,6 +9,10 @@ const applicantSchema = new Schema({
     name: {type: String, required: true},
     numberOfJobApplications: {type: Number, required: true},
     jobApplications: {type: [JobApplication], required: false},
+    
+
+
+
 }, { timestamps: true} )
 
 module.exports = mongoose.model('Applicant', applicantSchema);
