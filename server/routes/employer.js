@@ -1,5 +1,4 @@
 const express = require("express");
-const employer = require('../models/employerModel')
 
 // employerRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -41,11 +40,17 @@ employerRoutes.route("/employer/:id").get(function (req, res) {
 // This section will help you create a new employer.
 employerRoutes.route("/employer/add").post(function (req, response) {
   let db_connect = dbo.getDb();
+
+
+  console.log(req);
+  console.log(req.body);
+
   let myobj = {
     name: req.body.name,
-    position: req.body.position,
-    level: req.body.level,
+    numberOfJobPostings: req.body.numberOfJobPostings,
   };
+
+  console.log(myobj)
   db_connect.collection("employers").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);

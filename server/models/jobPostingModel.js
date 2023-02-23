@@ -1,5 +1,5 @@
 const { Int32 } = require('bson')
-const mongoose = require('monogoose')
+const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
