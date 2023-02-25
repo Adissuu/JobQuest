@@ -6,7 +6,7 @@ import styles from "../../styles/Jobs/jobs.module.css";
 function JobDescription(props) {
     const router = useRouter();
 
-    const job = findJob(router.query.Id);
+    const job = findJob(router.query.id);
 
     if (!job) return <div>Error message</div>
 
