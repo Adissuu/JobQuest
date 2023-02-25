@@ -41,3 +41,8 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.component {
+  height: calc(100vh - 90px);
+  overflow: scroll;
+}
