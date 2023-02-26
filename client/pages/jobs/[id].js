@@ -17,5 +17,4 @@ const Jobs2 = () => {
         </Layout>
     )
 }
-
 export default Jobs2;
