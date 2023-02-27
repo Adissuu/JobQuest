@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 const employerSchema = new Schema({
     name: {type: String, required: true},
     numberOfJobPostings: {type: Number, required: true},
-    jobPostings: {type: [JobPosting], required: false},
+    //jobPostings: {type: [JobPosting], required: false},
 }, { timestamps: true} )
 
 module.exports = mongoose.model('Employer', employerSchema);
