@@ -116,10 +116,13 @@ userRoutes.route("/signup").post(async function (req, res, next) {
   })
 
   
-userRoutes.route("/signin").post(async function (req, res, next) {
+userRoutes.route("/signin").post(async function (req, res) {
 
     let db_connect = dbo.getDb();
-    let myquery = { email: req.params.email, password: req.params.password };
+    let myquery = { email: req.body.email, password: req.body.password };
+    console.log(req.body.email);
+    console.log(req.body.password);
+
 
     db_connect.collection("Users").findOne(myquery, function(err, results)
     {
