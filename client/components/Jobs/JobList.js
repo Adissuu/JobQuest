@@ -9,11 +9,12 @@ function JobList(props) {
   // const router = useRouter();
   
   // let jobs = myJobs();
+  console.log(`employers from JobList: ${props.employers}`)
 
   let content;
   content = props.jobs.map((job) => (
     <Link  key={job._id} className={styles.jobitem} href={"/jobs/"+job._id}>
-      <JobItem title={job.jobTitle} />
+      <JobItem title={job.jobTitle} employer={props.employers.find(employer => employer._id === job.employerId)}/>
     </Link>
   ));
   return (

@@ -12,7 +12,7 @@ function JobDescription(props) {
 
     return <div className={styles.jobdescription}>
         <Link href={"/jobs/view/"+job._id} className={styles.title}>{job.jobTitle}</Link>
-        {/* <div className={styles.company}>{job.company}</div> */}
+        <div className={styles.company}>{props.employer.CompanyName}</div>
         <div>{job.description}</div>
         <button className={styles.applybtn}>Apply</button>
     </div>

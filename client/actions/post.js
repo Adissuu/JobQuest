@@ -71,3 +71,27 @@ export const removePost = (id, token) => {
         })
         .catch(err => console.log(err));
 };
+
+export const singleEmployer = (id) => {
+    return fetch(`${API}/employer/${id}`, {
+        method: 'GET',
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+
+}
+
+export const listEmployers = () => {
+    return fetch(`${API}/employer`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+        },
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
