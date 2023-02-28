@@ -1,5 +1,5 @@
 import { myRecruits } from "../../public/Recruits/dummy-recruits.js";
-import JobItem from "@/components/Jobs/JobItem";
+import RecruitItem from "@/components/Recruits/RecruitsItem";
 import styles from "../../styles/Jobs/jobs.module.css";
 import { useRouter } from "next/router.js";
 import Link from "next/link.js";
@@ -7,12 +7,12 @@ import Link from "next/link.js";
 function RecruitsList() {
   const router = useRouter();
 
-  let Recruit = myRecruits();
+  let Recruits = myRecruits();
 
   let content;
-  content = jobs.map((job) => (
-    <Link  key={job.id} className={styles.jobitem} href={"/jobs/"+job.id}>
-      <JobItem title={job.title} company={job.company} />
+  content = Recruits.map((recruit) => (
+    <Link  key={recruit.id} className={styles.jobitem} href={"/recruit/"+recruit.id}>
+      <RecruitItem title={recruit.Name} company={recruit.City} />
     </Link>
   ));
   return (
@@ -22,4 +22,4 @@ function RecruitsList() {
   );
 }
 
-export default JobList;
+export default RecruitsList;
