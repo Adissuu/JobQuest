@@ -46,7 +46,7 @@ export const listPostsWithType = (type) => {
 };
 
 export const singlePost = (id) => {
-    return fetch(`${API}/post/${id}`, {
+    return fetch(`${API}/jobposting/${id}`, {
         method: 'GET',
     })
         .then(response => {

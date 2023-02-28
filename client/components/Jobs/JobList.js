@@ -12,7 +12,7 @@ function JobList(props) {
 
   let content;
   content = props.jobs.map((job) => (
-    <Link  key={job._id} className={styles.jobitem} href={"/jobs/"+job.id}>
+    <Link  key={job._id} className={styles.jobitem} href={"/jobs/"+job._id}>
       <JobItem title={job.jobTitle} />
     </Link>
   ));

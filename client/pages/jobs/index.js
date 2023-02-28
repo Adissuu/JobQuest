@@ -18,6 +18,7 @@ export async function getStaticProps() {
     props: {
       jobs: allJobs,
     },
+    revalidate: 10
   };
 }
 export default Jobs;
