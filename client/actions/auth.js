@@ -16,8 +16,24 @@ export const handleResponse = response => {
     }
 };
 
-export const signup = (user) => {
-    return fetch(`${API}/signup`, {
+export const signupApplicant = (user) => {
+    return fetch(`${API}/applicant/add`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+        .then(response => {
+            console.log(response)
+            return response.json()
+        })
+        .catch(err => console.log(err))
+}
+
+export const signupEmployer = (user) => {
+    return fetch(`${API}/employer/add`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

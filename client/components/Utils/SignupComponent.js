@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { signup, isAuth } from '../../actions/auth';
+import { signupApplicant, signupEmployer, isAuth } from '../../actions/auth';
 import Image from 'next/image'
 import signupImg from '@/public/Signin-up/Signup_img.png';
 import Router from 'next/router';
-import Link from 'next/link';
 
 const SignupComponent = () => {
     const [values, setValues] = useState({
@@ -11,7 +10,6 @@ const SignupComponent = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 0,
         tempRole: '',
         error: '',
         loading: false,
@@ -29,29 +27,49 @@ const SignupComponent = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (tempRole == "Recruiter") { setValues({ ...values, role: 1 }) }
-        else { setValues({ ...values, role: 0 }) }
         setValues({ ...values, loading: true, error: false })
-        const user = { name, email, password, role }
-        signup(user).then(data => {
-            if (data.error) {
-                setValues({ ...values, error: data.error })
-            } else {
-                setValues({
-                    ...values,
-                    name: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: '',
-                    role: 0,
-                    tempRole: '',
-                    error: '',
-                    loading: false,
-                    message: '',
-                    showForm: true
-                })
-            }
-        })
+        const user = { name, email, password }
+        if (tempRole == "Recruiter") {
+            signupEmployer(user).then(data => {
+                if (data.error) {
+                    setValues({ ...values, error: data.error })
+                } else {
+                    setValues({
+                        ...values,
+                        name: '',
+                        email: '',
+                        password: '',
+                        confirmPassword: '',
+                        tempRole: '',
+                        error: '',
+                        loading: false,
+                        message: '',
+                        showForm: true
+                    })
+                }
+            })
+        }
+        else {
+            signupApplicant(user).then(data => {
+                if (data.error) {
+                    setValues({ ...values, error: data.error })
+                } else {
+                    setValues({
+                        ...values,
+                        name: '',
+                        email: '',
+                        password: '',
+                        confirmPassword: '',
+                        tempRole: '',
+                        error: '',
+                        loading: false,
+                        message: '',
+                        showForm: true
+                    })
+                }
+            })
+        }
+
     };
 
     const handleChange = name => (e) => {
@@ -120,7 +138,7 @@ const SignupComponent = () => {
     }
 
     return (
-        <div className=''>
+        <div>
             {showForm && signupForm()}
         </div>
     )
