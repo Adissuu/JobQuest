@@ -49,6 +49,12 @@ const SignupComponent = () => {
                     showForm: true
                 })
             }
+            if (role == 0) {
+                Router.push(`/profile/crudapplicant`)
+            }
+            else {
+                Router.push(`/profile/crudemployer`)
+            }
         })
     };
 

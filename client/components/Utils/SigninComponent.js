@@ -32,9 +32,9 @@ const SigninComponent = () => {
         // authenticate user
         authenticate(data, () => {
           if (isAuth() && isAuth().role == 1) {
-            Router.push(`/recruiter`);
+            Router.push(`/profile/recruiter`);
           } else {
-            Router.push(`/applicant`);
+            Router.push(`/profile/applicant`);
           }
         });
       }

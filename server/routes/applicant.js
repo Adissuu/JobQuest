@@ -28,13 +28,13 @@ applicantRoutes.route("/applicant").get(function (req, res) {
 // This section will help you get a single applicant by id
 applicantRoutes.route("/applicant/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect
-      .collection("Applicants")
-      .findOne(myquery, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
+    .collection("Applicants")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
 
 // This section will help you create a new applicant.
@@ -55,7 +55,7 @@ applicantRoutes.route("/applicant/add").post(function (req, response) {
 // This section will help you update a applicant by id.
 applicantRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
       name: req.body.name,
@@ -75,7 +75,7 @@ applicantRoutes.route("/update/:id").post(function (req, response) {
 // This section will help you delete a applicant
 applicantRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("Applicants").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");

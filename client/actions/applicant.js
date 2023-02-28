@@ -3,7 +3,7 @@ import { API } from '../config';
 import { handleResponse } from "./auth";
 
 
-export const AppPublicProfile = (username) => {
+export const appPublicProfile = (username) => {
     return fetch(`${API}/applicant/${username}`, {
         method: 'GET',
         headers: {
@@ -15,6 +15,24 @@ export const AppPublicProfile = (username) => {
         })
         .catch(err => console.log(err))
 }
+
+export const createApplicant = (token, user) => {
+    return fetch(`${API}/applicant/add`, {
+        method: 'Post',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: user
+    })
+        .then(response => {
+            handleResponse(response);
+            return response.json()
+        })
+        .catch(err => console.log(err))
+}
+
+
 
 export const getAppProfile = (token) => {
     return fetch(`${API}/applicant/profile`, {
