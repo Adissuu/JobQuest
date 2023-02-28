@@ -39,15 +39,13 @@ applicantRoutes.route("/applicant/:id").get(function (req, res) {
 
 // This section will help you create a new applicant.
 applicantRoutes.route("/applicant/add").post(function (req, response) {
-  let db_connect = dbo.getDb();
-
-
-  console.log(req);
-  console.log(req.body);
+  let db_connect = dbo.getDb("JobQuest");
 
   let myobj = {
     name: req.body.name,
-    numberOfJobPostings: req.body.numberOfJobPostings,
+    numberOfJobApplications: req.body.numberOfJobApplications,
+    
+
   };
 
   console.log(myobj)
