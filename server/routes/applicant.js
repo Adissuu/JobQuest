@@ -44,9 +44,7 @@ applicantRoutes.route("/applicant/add").post(function (req, response) {
   let myobj = {
     name: req.body.name,
     numberOfJobApplications: req.body.numberOfJobApplications,
-
   };
-
   console.log(myobj)
   db_connect.collection("Applicants").insertOne(myobj, function (err, res) {
     if (err) throw err;
