@@ -44,7 +44,6 @@ applicantRoutes.route("/applicant/add").post(function (req, response) {
   let myobj = {
     name: req.body.name,
     numberOfJobApplications: req.body.numberOfJobApplications,
-    
 
   };
 
