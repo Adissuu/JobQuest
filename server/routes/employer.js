@@ -7,7 +7,8 @@ const employerRoutes = express.Router();
 
 // This will help us connect to the database
 const dbo = require("../db/conn");
-const employer = require("../models/employerModel");
+const { db } = require("../models/employerModel");
+const Employer = require("../models/employerModel");
 
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
@@ -15,6 +16,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the employers.
 employerRoutes.route("/employer").get(function (req, res) {
+  
   let db_connect = dbo.getDb("JobQuest");
   db_connect
     .collection("Employers")
@@ -39,23 +41,19 @@ employerRoutes.route("/employer/:id").get(function (req, res) {
 
 // This section will help you create a new employer.
 employerRoutes.route("/employer/add").post(function (req, response) {
-  let db_connect = dbo.getDb();
-
-
-  console.log(req);
-  console.log(req.body);
+  let db_connect = dbo.getDb("JobQuest");
 
   let myobj = {
     name: req.body.name,
     numberOfJobPostings: req.body.numberOfJobPostings,
   };
 
-  console.log(myobj)
-  db_connect.collection("employers").insertOne(myobj, function (err, res) {
+  db_connect.collection("Employers").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
-});
+})
+
 
 // This section will help you update a employer by id.
 employerRoutes.route("/update/:id").post(function (req, response) {
