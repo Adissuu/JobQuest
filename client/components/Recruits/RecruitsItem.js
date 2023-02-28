@@ -1,4 +1,4 @@
-import styles from"../../styles/Jobs/jobs.module.css";
+import styles from "../../styles/Jobs/jobs.module.css";
 
 function RecruitItem(props) {
     return <div>

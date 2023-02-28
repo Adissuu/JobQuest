@@ -1,21 +1,22 @@
-import { findJob } from "../../public/Jobs/dummy-jobs.js";
+import { findJob, findRecruits } from "../../public/Recruits/dummy-recruits";
 import { useRouter } from "next/router.js";
 import Link from "next/link.js";
 import styles from "../../styles/Jobs/jobs.module.css";
 
-function JobDescription(props) {
+function RecruitsDescription(props) {
     const router = useRouter();
 
-    const job = findJob(router.query.id);
+    const Recruit = findRecruits(router.query.id);
 
     if (!job) return <div>Error message</div>
 
     return <div className={styles.jobdescription}>
-        <Link href={"/jobs/view/"+job.id} className={styles.title}>{job.title}</Link>
-        <div className={styles.company}>{job.company}</div>
-        <div>{job.description}</div>
+        <Link href={"/recruit/view/"+Recruit.id} className={styles.title}>{Recruit.Name}</Link>
+        <div className={styles.company}>{Recruit.City}</div>
+        <div>{Recruit.Education}</div>
+        <div>{Recruit.Experience}</div>
         <button className={styles.applybtn}>Apply</button>
     </div>
 }
 
-export default JobDescription;
+export default RecruitsDescription;
