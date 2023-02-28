@@ -50,42 +50,46 @@ jobPostingRoutes.route("/jobPosting/employer/:id").get(function (req, res) {
     });
 });
 
-
-
-
-
-
-
 // This section will help you create a new jobPosting.
 jobPostingRoutes.route("/jobPosting/add").post(function (req, response) {
-  let db_connect = dbo.getDb();
-
-
-  console.log(req);
-  console.log(req.body);
+  let db_connect = dbo.getDb("JobQuest");
 
   let myobj = {
-    name: req.body.name,
-    numberOfJobPostings: req.body.numberOfJobPostings,
+    jobTitle: req.body.jobTitle,
+
+    jobType: req.body.jobType,
+    location: req.body.location,
+    remote: req.body.remote,
+    description: req.body.description,
+
+    employerId: ObjectId(req.body.employerId),
+    employerName: req.body.employerName,
+    employerWebsite: req.body.employerWebsite,
   };
 
-  console.log(myobj)
   db_connect.collection("JobPostings").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
-});
+})
 
 // This section will help you update a jobPosting by id.
-jobPostingRoutes.route("/update/:id").post(function (req, response) {
+jobPostingRoutes.route("/jobPosting/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
-      name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
-    },
+      jobTitle: req.body.jobTitle,
+
+      jobType: req.body.jobType,
+      location: req.body.location,
+      remote: req.body.remote,
+      description: req.body.description,
+  
+      employerId: ObjectId(req.body.employerId),
+      employerName: req.body.employerName,
+      employerWebsite: req.body.employerWebsite,
+      },
   };
   db_connect
     .collection("JobPostings")
