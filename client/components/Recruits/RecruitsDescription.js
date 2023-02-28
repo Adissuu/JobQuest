@@ -15,7 +15,7 @@ function RecruitsDescription(props) {
         <div className={styles.company}>{Recruit.City}</div>
         <div>{Recruit.Education}</div>
         <div>{Recruit.Experience}</div>
-        <button className={styles.applybtn}>Apply</button>
+        <button className={styles.applybtn}>Recruit</button>
     </div>
 }
 
