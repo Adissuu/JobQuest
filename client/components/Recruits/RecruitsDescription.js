@@ -8,7 +8,7 @@ function RecruitsDescription(props) {
 
     const Recruit = findRecruits(router.query.id);
 
-    if (!job) return <div>Error message</div>
+    if (!Recruit) return <div>Error message</div>
 
     return <div className={styles.jobdescription}>
         <Link href={"/recruit/view/"+Recruit.id} className={styles.title}>{Recruit.Name}</Link>
