@@ -6,12 +6,11 @@ import Link from "next/link.js";
 
 function JobList() {
   const router = useRouter();
-  /*
   let jobs = myJobs();
 
   let content;
   content = jobs.map((job) => (
-    <Link  key={job.id} className={styles.jobitem} href={"/jobs/"+job.id}>
+    <Link key={job.id} className={styles.jobitem} href={"/jobs/" + job.id}>
       <JobItem title={job.title} company={job.company} />
     </Link>
   ));
@@ -20,7 +19,6 @@ function JobList() {
       {content}
     </section>
   );
-*/
 
 }
 
