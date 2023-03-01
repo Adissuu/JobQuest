@@ -28,13 +28,13 @@ applicantRoutes.route("/applicant").get(function (req, res) {
 // This section will help you get a single applicant by id
 applicantRoutes.route("/applicant/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect
-      .collection("Applicants")
-      .findOne(myquery, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
+    .collection("Applicants")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
 
 // This section will help you create a new applicant.

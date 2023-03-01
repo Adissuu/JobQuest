@@ -1,15 +1,9 @@
-
 import JobItem from "@/components/Jobs/JobItem";
 import styles from "../../styles/Jobs/jobs.module.css";
-import { useRouter } from "next/router.js";
 import Link from "next/link.js";
 
-function JobList(props) {
 
-  // const router = useRouter();
-  
-  // let jobs = myJobs();
-  console.log(`employers from JobList: ${props.employers}`)
+function JobList(props) {
 
   let content;
   content = props.jobs.map((job) => (
@@ -22,8 +16,6 @@ function JobList(props) {
       {content}
     </section>
   );
-
-
 }
 
 export default JobList;

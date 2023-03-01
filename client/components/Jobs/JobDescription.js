@@ -1,10 +1,7 @@
-import { findJob } from "../../public/Jobs/dummy-jobs.js";
-import { useRouter } from "next/router.js";
 import Link from "next/link.js";
 import styles from "../../styles/Jobs/jobs.module.css";
 
 function JobDescription(props) {
-    const router = useRouter();
 
     const job = props.job;
 

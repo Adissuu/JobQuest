@@ -4,7 +4,6 @@ import JobList from "@/components/Jobs/JobList";
 
 const Jobs = (props) => {
     const {jobs, employers} = props
-    console.log(`employers from JObs page: ${employers}`)
   return (
     <Layout pathname="jobs">
       <h1>Choose your adventure!</h1>
@@ -13,10 +12,10 @@ const Jobs = (props) => {
   );
 };
 
+
 export async function getStaticProps() {
   const allJobs = await listJobs();
   const allEmployers = await listEmployers();
-  // console.log(allEmployers)
   return {
     props: {
       jobs: allJobs,
