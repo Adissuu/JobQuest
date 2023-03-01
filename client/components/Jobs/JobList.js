@@ -7,6 +7,7 @@ import Link from "next/link.js";
 function JobList() {
   const router = useRouter();
 
+
   let jobs = myJobs();
 
   let content;
