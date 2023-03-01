@@ -1,6 +1,5 @@
 import JobItem from "@/components/Jobs/JobItem";
 import styles from "../../styles/Jobs/jobs.module.css";
-import { useRouter } from "next/router.js";
 import Link from "next/link.js";
 
 
