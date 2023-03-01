@@ -39,8 +39,6 @@ userRoutes.route("/user/:id").get(function (req, res) {
       });
 });
 
-
-
 // This section will help you create a new user.
 userRoutes.route("/user/add").post(function (req, response) {
   let db_connect = dbo.getDb("JobQuest");
@@ -142,7 +140,7 @@ userRoutes.route("/signup").post(async function (req, res) {
     });
   })
 
-  
+
 userRoutes.route("/signin").post(async function (req, res) {
 
     let db_connect = dbo.getDb();
