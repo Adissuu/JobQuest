@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 const SignupComponent = () => {
     const [values, setValues] = useState({
+
         name: '',
         email: '',
         password: '',
@@ -17,7 +18,7 @@ const SignupComponent = () => {
         message: '',
         showForm: true
     })
-
+    
     const { name, email, password, confirmPassword, role, tempRole, error, loading, message, showForm } = values;
 
     // if signed in, no signup/signin pages
@@ -71,6 +72,7 @@ const SignupComponent = () => {
 
     const handleChange = name => (e) => {
         setValues({ ...values, error: false, [name]: e.target.value });
+
     };
 
 
@@ -88,7 +90,7 @@ const SignupComponent = () => {
                                     className="dark:text-white pl-2 rounded"
                                     placeholder='User.name'
                                     onChange={handleChange('name')} />
-                            </div>
+
                             <div className="mb-4 ml-2">
                                 <label className="block text-gray-700 rounded text-sm font-bold mb-2">Email</label>
                                 <input value={email}

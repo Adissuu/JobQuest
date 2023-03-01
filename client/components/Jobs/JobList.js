@@ -1,4 +1,4 @@
-import { listJobs } from "@/actions/post";
+import { myJobs } from "../../public/Jobs/dummy-jobs.js";
 import JobItem from "@/components/Jobs/JobItem";
 import styles from "../../styles/Jobs/jobs.module.css";
 import { useRouter } from "next/router.js";
@@ -6,7 +6,8 @@ import Link from "next/link.js";
 
 function JobList() {
   const router = useRouter();
-  /*
+
+
   let jobs = myJobs();
 
   let content;
@@ -20,8 +21,6 @@ function JobList() {
       {content}
     </section>
   );
-*/
-
 }
 
 export default JobList;

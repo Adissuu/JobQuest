@@ -81,6 +81,7 @@ const PostForm = () => {
       </form>
     </div>
   )
+
 }
 
 export default PostForm;

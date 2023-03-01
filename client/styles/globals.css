@@ -24,9 +24,7 @@ a {
 ::-webkit-scrollbar {
   width: 0px;
   height: 0px;
-
 }
-
 .nav {
   width: 100vw;
   height: 90px;
@@ -53,3 +51,4 @@ a {
   height: calc(100vh - 90px);
   overflow: scroll;
 }
+

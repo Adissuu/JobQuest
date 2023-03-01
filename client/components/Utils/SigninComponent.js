@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 const SigninComponent = () => {
   const [values, setValues] = useState({
+
     email: '',
     password: '',
     error: '',
@@ -13,6 +14,7 @@ const SigninComponent = () => {
   })
 
   const { email, password, error, loading, message, showForm } = values;
+
 
   useEffect(() => {
     isAuth() && Router.push(`/`);
@@ -45,6 +47,7 @@ const SigninComponent = () => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
+
   const signinForm = () => {
     return (
       <>
@@ -55,6 +58,7 @@ const SigninComponent = () => {
               <label className="block text-sm font-bold mb-2">Email</label>
               <input value={email}
                 type="email"
+
                 className="w-full rounded dark:text-white pl-2"
                 onChange={handleChange('email')}
                 placeholder="email@email.com" />
