@@ -41,7 +41,7 @@ const PostForm = () => {
         
             <div class="mb-4">
               <label class="block text-gray-700 dark:text-white text-sm mb-2" for="job-title">Title</label>
-              <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="job-title" name="job-title" placeholder="Frontend Developer" autofocus value={jobTitle} onChange={(event) => setJobTitle(event.target.value)}/>
+              <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="job-title" name="job-title" placeholder="Frontend Developer" autofocus required value={jobTitle} onChange={(event) => setJobTitle(event.target.value)}/>
             </div>
   
             <div class="mb-4">
@@ -84,15 +84,15 @@ const PostForm = () => {
   
           
             <div>
-              <label for="description" class="block text-gray-700 dark:text-white text-sm mb-2">Description</label>
-              <textarea name="description" id="description" className="w-full px-4 py-3 bg-white dark:text-black-100 border-gray-400 border rounded" cols="" rows="" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+              <label for="description" class="block text-gray-700 dark:text-white text-sm mb-2" >Description</label>
+              <textarea required name="description" id="description" className="w-full px-4 py-3 bg-white dark:text-black-100 border-gray-400 border rounded" cols="" rows="" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
             </div>
   
             <div class="flex flex-wrap -mx-3">
              
               <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2">Company</label>
-                <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="Company" value={employerName} onChange={(event) => setEmployerName(event.target.value)}/>
+                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2" >Company</label>
+                <input required type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="Company" value={employerName} onChange={(event) => setEmployerName(event.target.value)}/>
               </div>
   
              
