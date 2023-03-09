@@ -66,7 +66,7 @@ const PostForm = () => {
     return (
         <div class="w-full max-w-xl mx-auto component flex items-start py-4">
         <form action="" method="post" onSubmit={sendMessageHandler}>
-          <h1 class="text-2xl mb-2">Post new job</h1>
+          <h1 class="text-2xl mb-2">{router.query.id?"Update job":"Post new job"}</h1>
           
           <div class="py-2 mb-5">
         

@@ -11,7 +11,7 @@ const Jobs = (props) => {
  
   return (
     <Layout pathname={router.query.user?"manage":"jobs"}>
-      <h1>Choose your adventure!</h1>
+      <h1>{router.query.user?"":"Choose your adventure!"}</h1>
       <JobList jobs = {jobs} /*employers = {employers}*//>
     </Layout>
   );

@@ -5,18 +5,72 @@ import Link from "next/link.js";
 import { useState, useEffect } from "react";
 
 function JobList(props) {
-  console.log(`employers from JobList: ${props.employers}`);
-  console.log(`user from JOBLIST: ${props.user}`);
+  const [requestStatus, setRequestStatus] = useState("");
 
   const router = useRouter();
+
+  async function deleteHandler(id) {
+    console.log(`id from deleteHandler: ${id}`);
+    try {
+      setRequestStatus("pending");
+      await fetch(`http://localhost:5000/jobPosting/${id}`, {
+        method: "DELETE",
+        // body: JSON.stringify({
+        //   jobTitle: jobTitle,
+        //   jobType: jobType,
+        //   location: location,
+        //   remote: remote,
+        //   description: description,
+        //   employerName: employerName,
+        //   employerWebsite: employerWebsite
+        // }),
+        // headers: {
+        //   'Content-Type':'application/json',
+        // }
+      });
+      setRequestStatus("success");
+    } catch (err) {
+      setRequestStatus("error");
+    }
+  }
+  let notification = { message: "" };
+  if (requestStatus === "pending") {
+    notification = {
+      status: "pending",
+      title: "Sending message...",
+      message: "Your message is on its way",
+    };
+  }
+  if (requestStatus === "success") {
+    notification = {
+      status: "success",
+      title: "Success!",
+      message: "Job Posting deleted succesfully!",
+    };
+  }
+  if (requestStatus === "error") {
+    notification = {
+      status: "error",
+      title: "Something went wrong!",
+      message: "Error, Job Posting not deleted.",
+    };
+  }
+  useEffect(() => {
+  }, [requestStatus]);
+
   const setManageContent = (jobId) => {
     let manageContent;
     if (router.query.user === "recruiter") {
       manageContent = (
         <div className={styles.managebuttons}>
-          <Link className={styles.deleteposting} href={`/`}>
+          <button
+            className={styles.deleteposting}
+            onClick={function () {
+              deleteHandler(jobId);
+            }}
+          >
             Delete
-          </Link>
+          </button>
           <Link className={styles.updateposting} href={`/post?id=${jobId}`}>
             Update
           </Link>
@@ -47,6 +101,7 @@ function JobList(props) {
   return (
     <section className={`${styles.joblist} ${styles.scrollable}`}>
       {content}
+      {router.query.user ? notification.message : ""}
     </section>
   );
 }

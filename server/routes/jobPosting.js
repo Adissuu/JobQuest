@@ -101,7 +101,7 @@ jobPostingRoutes.route("/jobPosting/update/:id").post(function (req, response) {
 });
 
 // This section will help you delete a jobPosting
-jobPostingRoutes.route("/:id").delete((req, response) => {
+jobPostingRoutes.route("/jobPosting/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect.collection("JobPostings").deleteOne(myquery, function (err, obj) {
