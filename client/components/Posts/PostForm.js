@@ -19,6 +19,8 @@ const PostForm = () => {
         method: 'POST',
         body: JSON.stringify({
           jobTitle: jobTitle,
+          jobType: jobType,
+          location: location
         }),
         headers: {
           'Content-Type':'application/json',
@@ -35,7 +37,7 @@ const PostForm = () => {
         
             <div class="mb-4">
               <label class="block text-gray-700 dark:text-white text-sm mb-2" for="job-title">Title</label>
-              <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" type="email" id="job-title" name="job-title" placeholder="Frontend Developer" autofocus value={jobTitle} onChange={(event) => setJobTitle(event.target.value)}/>
+              <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="job-title" name="job-title" placeholder="Frontend Developer" autofocus value={jobTitle} onChange={(event) => setJobTitle(event.target.value)}/>
             </div>
   
             <div class="mb-4">
