@@ -10,11 +10,12 @@ function JobDescription(props) {
 
     if (!job) return <div>Error message</div>
 
-    if (!props.employer) return <div>missing employer</div>
+    let employerContent;
+    if (props.employer) employerContent=props.employer/*.CompanyName*/;
 
     return <div className={styles.jobdescription}>
         <Link href={"/jobs/view/"+job._id} className={styles.title}>{job.jobTitle}</Link>
-        <div className={styles.company}>{props.employer.CompanyName}</div>
+        <div className={styles.company}>{employerContent}</div>
         <div>{job.description}</div>
         <button className={styles.applybtn}>Apply</button>
     </div>

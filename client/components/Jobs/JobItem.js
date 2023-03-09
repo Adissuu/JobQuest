@@ -7,7 +7,7 @@ function JobItem(props) {
         titleContent=props.title;
     }
     if (props.employer) {
-        employerContent=props.employer.CompanyName;
+        employerContent=props.employer/*CompanyName*/;
     }
     return <div>
         <div className={styles.title}>{titleContent}</div>

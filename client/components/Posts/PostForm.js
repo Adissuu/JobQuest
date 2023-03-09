@@ -20,12 +20,16 @@ const PostForm = () => {
         body: JSON.stringify({
           jobTitle: jobTitle,
           jobType: jobType,
-          location: location
+          location: location,
+          remote: remote,
+          description: description,
+          employerName: employerName,
+          employerWebsite: employerWebsite
         }),
         headers: {
           'Content-Type':'application/json',
         }
-      })
+      });
     }
 
     return (
@@ -80,21 +84,21 @@ const PostForm = () => {
   
           
             <div>
-              <label for="description" class="block text-gray-700 dark:text-white text-sm mb-2" value={description} onChange={(event) => setDescription(event.target.value)}>Description</label>
-              <textarea name="description" id="description" className="w-full px-4 py-3 bg-white dark:text-black-100 border-gray-400 border rounded" cols="" rows=""></textarea>
+              <label for="description" class="block text-gray-700 dark:text-white text-sm mb-2">Description</label>
+              <textarea name="description" id="description" className="w-full px-4 py-3 bg-white dark:text-black-100 border-gray-400 border rounded" cols="" rows="" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
             </div>
   
             <div class="flex flex-wrap -mx-3">
              
               <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2" value={employerName} onChange={(event) => setEmployerName(event.target.value)}>Company</label>
-                <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="Company"/>
+                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2">Company</label>
+                <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="Company" value={employerName} onChange={(event) => setEmployerName(event.target.value)}/>
               </div>
   
              
               <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2" value={employerWebsite} onChange={(event) => setEmployerWebsite(event.target.value)}>Company Website</label>
-                <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="https://jobquest.com"/>
+                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2">Company Website</label>
+                <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="https://jobquest.com" value={employerWebsite} onChange={(event) => setEmployerWebsite(event.target.value)}/>
               </div>
             </div>
             <div class="mb-4 md:mb-0">

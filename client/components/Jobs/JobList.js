@@ -12,7 +12,7 @@ function JobList(props) {
   let content;
   content = props.jobs.map((job) => (
     <Link  key={job._id} className={styles.jobitem} href={"/jobs/"+job._id}>
-      <JobItem title={job.jobTitle} employer={props.employers.find(employer => employer._id === job.employerId)} onClick={() => handleJobClick(job)}/>
+      <JobItem title={job.jobTitle} employer={job.employerName/*props.employers.find(employer => employer._id === job.employerId)*/} onClick={() => handleJobClick(job)}/>
     </Link>
   ));
   return (
