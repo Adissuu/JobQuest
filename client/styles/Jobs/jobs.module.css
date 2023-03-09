@@ -57,18 +57,3 @@
       width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
     }
   }
-
-  @media screen and (max-width: 700px) {
-    .jobdescription {
-      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
-    }
-  }
-
-  @media screen and (max-width: 700px) {
-    .jobcontainer {
-        width: 100%;
-    }
-    .jobcontainer .jobdescription {
-      display: none;
-    }
-  }

@@ -4,7 +4,7 @@ import JobList from "@/components/Jobs/JobList";
 
 const Jobs = (props) => {
     const {jobs, employers} = props
-    console.log(`employers from JObs page: ${employers}`)
+    console.log(`employers from Jobs page: ${[...employers]}`)
   return (
     <Layout pathname="jobs">
       <h1>Choose your adventure!</h1>

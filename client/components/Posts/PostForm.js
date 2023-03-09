@@ -1,16 +1,41 @@
+import { useState } from "react";
 
 const PostForm = () => {
 
+  const [jobTitle, setJobTitle] = useState('');
+  const [jobType, setJobType] = useState('');
+  const [location, setLocation] = useState('');
+  const [remote, setRemote] = useState('');
+  const [description, setDescription] = useState('');
+  const [employerId, setEmployerId] = useState('');
+  const [employerName, setEmployerName] = useState('');
+  const [employerWebsite, setEmployerWebsite] = useState('');
+
+
+    function sendMessageHandler(event) {
+      event.preventDefault();
+
+      fetch('http://localhost:5000/jobPosting/add', {
+        method: 'POST',
+        body: JSON.stringify({
+          jobTitle: jobTitle,
+        }),
+        headers: {
+          'Content-Type':'application/json',
+        }
+      })
+    }
+
     return (
         <div class="w-full max-w-xl mx-auto component flex items-start py-4">
-        <form action="" method="post">
+        <form action="" method="post" onSubmit={sendMessageHandler}>
           <h1 class="text-2xl mb-2">Post new job</h1>
           
           <div class="py-2 mb-5">
         
             <div class="mb-4">
               <label class="block text-gray-700 dark:text-white text-sm mb-2" for="job-title">Title</label>
-              <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" type="email" id="job-title" name="job-title" placeholder="Frontend Developer" autofocus/>
+              <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" type="email" id="job-title" name="job-title" placeholder="Frontend Developer" autofocus value={jobTitle} onChange={(event) => setJobTitle(event.target.value)}/>
             </div>
   
             <div class="mb-4">
@@ -25,7 +50,7 @@ const PostForm = () => {
                     Job Type
                   </label>
                   <div class="relative">
-                    <select class="block appearance-none w-full bg-white border border-gray-400 text-gray-700 py-3 px-4 pr-4 rounded leading-tight focus:outline-none focus:border-gray-500" id="job-type" name="job-type">
+                    <select class="block appearance-none w-full bg-white border border-gray-400 text-gray-700 py-3 px-4 pr-4 rounded leading-tight focus:outline-none focus:border-gray-500" id="job-type" name="job-type" value={jobType} onChange={(event) => setJobType(event.target.value)}>
                       <option>Full-time</option>
                       <option>Part-time</option>
                       <option>Freelance</option>
@@ -40,11 +65,11 @@ const PostForm = () => {
   
               <div class="w-full md:w-8/12 mb-4 md:mb-0">
                 <label for="location" class="block text-gray-700 dark:text-white text-sm mb-2">Location</label>
-                <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="location" name="location" placeholder="Montréal, QC"/>
+                <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="location" name="location" placeholder="Montréal, QC" value={location} onChange={(event) => setLocation(event.target.value)}/>
   
                 <div>
                   <label class="text-gray-600 dark:text-white flex items-center" for="remote">
-                    <input class="mr-2 leading-tight" type="checkbox" id="remote"/>
+                    <input class="mr-2 leading-tight" type="checkbox" id="remote" value={remote} onChange={(event) => setRemote(event.target.value)}/>
                     <span class="text-sm">Work can be done remotely</span>
                   </label>
                 </div>
@@ -53,20 +78,20 @@ const PostForm = () => {
   
           
             <div>
-              <label for="description" class="block text-gray-700 dark:text-white text-sm mb-2">Description</label>
+              <label for="description" class="block text-gray-700 dark:text-white text-sm mb-2" value={description} onChange={(event) => setDescription(event.target.value)}>Description</label>
               <textarea name="description" id="description" className="w-full px-4 py-3 bg-white dark:text-black-100 border-gray-400 border rounded" cols="" rows=""></textarea>
             </div>
   
             <div class="flex flex-wrap -mx-3">
              
               <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2">Company</label>
+                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2" value={employerName} onChange={(event) => setEmployerName(event.target.value)}>Company</label>
                 <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="Company"/>
               </div>
   
              
               <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2">Company Website</label>
+                <label for="company" class="block text-gray-700 dark:text-white text-sm mb-2" value={employerWebsite} onChange={(event) => setEmployerWebsite(event.target.value)}>Company Website</label>
                 <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="https://jobquest.com"/>
               </div>
             </div>

@@ -9,6 +9,36 @@ app.use(require("./routes/record"));
 app.use(require("./routes/employer"))
 app.use(require("./routes/jobPosting"))
 app.use(require("./routes/applicant"))
+app.use(require("./routes/user"))
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/userModel');
+
+
+const session = require('express-session');
+
+const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+
+app.use(session(sessionConfig))
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 
 
