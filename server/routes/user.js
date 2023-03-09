@@ -92,11 +92,10 @@ userRoutes.route("/signup").post(async function (req, res) {
     let db_connect = dbo.getDb();
     let myquery = { email: req.params.email};
 
-
     console.log(req);
 
-    db_connect.collection("Users").findOne(myquery, function(err, results)
     //  check that the email isn't already used
+    db_connect.collection("Users").findOne(myquery, function(err, results)
     {
         if (err) throw err;
         let username = shortId.generate();
@@ -140,14 +139,12 @@ userRoutes.route("/signup").post(async function (req, res) {
     });
   })
 
-
 userRoutes.route("/signin").post(async function (req, res) {
 
     let db_connect = dbo.getDb();
     let myquery = { email: req.body.email, password: req.body.password };
     console.log(req.body.email);
     console.log(req.body.password);
-
 
     db_connect.collection("Users").findOne(myquery, function(err, results)
     //  check if there's a user with the corresponding email and password
