@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const PostForm = () => {
+
+  const router = useRouter();
 
   const [jobTitle, setJobTitle] = useState('');
   const [jobType, setJobType] = useState('');
@@ -10,12 +13,13 @@ const PostForm = () => {
   const [employerId, setEmployerId] = useState('');
   const [employerName, setEmployerName] = useState('');
   const [employerWebsite, setEmployerWebsite] = useState('');
+  const [requestStatus, setRequestStatus] = useState('');
 
-
-    function sendMessageHandler(event) {
+    async function sendMessageHandler(event) {
       event.preventDefault();
-
-      fetch('http://localhost:5000/jobPosting/add', {
+      try {
+        setRequestStatus('pending');
+      await fetch(`http://localhost:5000/jobPosting/${router.query.id?`update/${router.query.id}`:"add"}`, {
         method: 'POST',
         body: JSON.stringify({
           jobTitle: jobTitle,
@@ -30,8 +34,35 @@ const PostForm = () => {
           'Content-Type':'application/json',
         }
       });
+      setRequestStatus('success');
+    }
+    catch(err) {
+      setRequestStatus('error');
+    }
     }
 
+    let notification = {message: ''};
+    if (requestStatus==='pending') {
+      notification = {
+        status: 'pending',
+        title: 'Sending message...',
+        message: 'Your message is on its way'
+      }
+    }
+    if (requestStatus==='success') {
+      notification = {
+        status: 'success',
+        title: 'Success!',
+        message: 'Job Posting added succesfully!'
+      }
+    }
+    if (requestStatus==='error') {
+      notification = {
+        status: 'error',
+        title: 'Something went wrong!',
+        message: 'Job Posting not added :('
+      }
+    }
     return (
         <div class="w-full max-w-xl mx-auto component flex items-start py-4">
         <form action="" method="post" onSubmit={sendMessageHandler}>
@@ -110,6 +141,7 @@ const PostForm = () => {
             <button class="bg-teal-500 hover:bg-teal-600 text-white py-2 px-3 rounded" type="submit">Create job</button>
           </div>
         </form>
+        <div>{notification.message}</div>
       </div>
     )
 }

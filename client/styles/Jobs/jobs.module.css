@@ -52,6 +52,18 @@
     color: white;
 }
 
+.managebuttons {
+
+}
+
+.deleteposting {
+    margin: 0px 5px 0px 0px;
+}
+
+.updateposting {
+    margin: 0px 0px 0px 5px;
+}
+
 @media screen and (max-width: 500px) {
     .jobitem {
       width: 100%; /* The width is 100%, when the viewport is 800px or smaller */

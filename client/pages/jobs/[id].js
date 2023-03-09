@@ -9,8 +9,9 @@ const Jobs2 = (props) => {
 
   const router = useRouter();
 
+  console.log(`router.quer from JOBDESCRIPTION ${router.query.user}`)
   return (
-    <Layout pathname="jobs">
+    <Layout pathname={router.query.user?"manage":"jobs"}>
       <h1>JobList with specific job description page</h1>
       <div className={styles.jobcontainer}>
         <JobList jobs={jobs} /*employers={employers}*/ />
