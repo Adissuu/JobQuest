@@ -9,6 +9,10 @@ const applicantSchema = new Schema({
     type: Number,
     required: true
   },
+  shortId: {
+    type: String,
+    required: false
+  }
 }, { timestamps: true })
 
 module.exports = mongoose.model('Applicant', applicantSchema)
