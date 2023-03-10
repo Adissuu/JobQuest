@@ -18,15 +18,23 @@ const userSchema = new Schema({
   shortId: {
     type: String,
     required: false
+  },
+  type: {
+    type: String,
+    required: true
   }
 
 })
 
 // static signup method
-userSchema.statics.signup = async function(email, password) {
+userSchema.statics.signup = async function(email, password, type) {
 
   // validation
-  if (!email || !password) {
+  //console.log(email)
+  //console.log(password)
+  //console.log(type)
+
+  if (!email || !password || !type) {
     throw Error('All fields must be filled')
   }
   if (!validator.isEmail(email)) {
@@ -47,7 +55,7 @@ userSchema.statics.signup = async function(email, password) {
 
   const shortId = shortid.generate()
 
-  const user = await this.create({ email, password: hash, shortId })
+  const user = await this.create({ email, password: hash, shortId, type })
 
   return user
 }
