@@ -1,5 +1,4 @@
 const Employer = require('../models/employerModel')
-const jopPostings = require('../models/jobPostingModel')
 const mongoose = require('mongoose')
 
 //get all employers
@@ -31,18 +30,18 @@ const getEmployer = async (req, res) => {
 
 // create new employer
 const createEmployer = async (req, res) => {
-  const {title, load, reps} = req.body
+  const {name, numberOfJobPostings, jobPostings, shortId} = req.body
 
   let emptyFields = []
 
-  if(!title) {
-    emptyFields.push('title')
+  if(!name) {
+    emptyFields.push('name')
   }
-  if(!load) {
-    emptyFields.push('load')
+  if(!numberOfJobPostings) {
+    emptyFields.push('numberOfJobPostings')
   }
-  if(!reps) {
-    emptyFields.push('reps')
+  if(!jobPostings) {
+    emptyFields.push('jobPostings')
   }
   if(emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
@@ -51,7 +50,7 @@ const createEmployer = async (req, res) => {
   // add doc to db
   try {
     const user_id = req.user._id
-    const employer = await Employer.create({name, numberOfJobPostings, jobPostings, user_id})
+    const employer = await Employer.create({name, numberOfJobPostings, jobPostings, shortId})
     res.status(200).json(employer)
   } catch (error) {
     res.status(400).json({error: error.message})
