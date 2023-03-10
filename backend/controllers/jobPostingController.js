@@ -107,10 +107,33 @@ const updateJobPosting = async (req, res) => {
 }
 
 
+// get all jobPostings for a specified employer
+const getAllJobPostingsByEmployer = async (req, res) => {
+  const { id } = req.params
+  //console.log(req)
+  //console.log(id)
+
+  // if (!mongoose.Types.ObjectId.isValid(employerId)) {
+  //   return res.status(404).json({error: 'No such jobPosting'})
+  // }
+
+  const jobPostings = await JobPosting.find({employerId: id})
+
+
+
+  if (!jobPostings) {
+    return res.status(404).json({error: 'No such jobPosting'})
+  }
+  
+  res.status(200).json(jobPostings)
+}
+
+
 module.exports = {
   getJobPostings,
   getJobPosting,
   createJobPosting,
   deleteJobPosting,
-  updateJobPosting
+  updateJobPosting,
+  getAllJobPostingsByEmployer
 }
