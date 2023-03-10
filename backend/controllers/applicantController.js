@@ -30,7 +30,7 @@ const getApplicant = async (req, res) => {
 
 // create new applicant
 const createApplicant = async (req, res) => {
-  const {name, numberOfJobApplications} = req.body
+  const {name, numberOfJobApplications, shortId} = req.body
 
   let emptyFields = []
 
@@ -40,11 +40,15 @@ const createApplicant = async (req, res) => {
   if(!numberOfJobApplications) {
     emptyFields.push('numberOfJobApplications')
   }
+  if(!shortId) {
+    emptyFields.push('shortId')
+  }
+
 
   // add doc to db
   try {
     const user_id = req.user._id
-    const applicant = await Applicant.create({name, numberOfJobApplications})
+    const applicant = await Applicant.create({name, numberOfJobApplications, shortId})
     res.status(200).json(applicant)
   } catch (error) {
     res.status(400).json({error: error.message})
@@ -91,8 +95,12 @@ const updateApplicant = async (req, res) => {
 // get an applicant from shortId
 const getApplicantFromShortId = async (req, res) => {
   const { shortId } = req.params
+  
+  //console.log(shortId)
 
   const applicant = await Applicant.find({shortId: shortId})
+
+  //console.log(applicant)
 
   if (!applicant) {
     return res.status(404).json({error: 'No such applicant'})
