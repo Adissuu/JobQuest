@@ -14,7 +14,7 @@ const loginUser = async (req, res) => {
 
     // create a token
     const token = createToken(user._id)
-
+    
     //  create a short id
     const shortId = user.shortId
 
