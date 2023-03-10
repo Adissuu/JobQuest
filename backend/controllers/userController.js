@@ -15,11 +15,14 @@ const loginUser = async (req, res) => {
     // create a token
     const token = createToken(user._id)
     
-    //  create a short id
+    //  return short id
     const shortId = user.shortId
 
+    //  return type
+    const type = user.type 
 
-    res.status(200).json({email, token, shortId})
+
+    res.status(200).json({email, token, shortId, type})
   } catch (error) {
     res.status(400).json({error: error.message})
   }
@@ -27,17 +30,18 @@ const loginUser = async (req, res) => {
 
 // signup a user
 const signupUser = async (req, res) => {
-  const {email, password} = req.body
+  const {email, password, type} = req.body
 
   try {
-    const user = await User.signup(email, password)
+    const user = await User.signup(email, password, type)
 
     // create a token
     const token = createToken(user._id)
 
     const shortId = user.shortId
 
-    res.status(200).json({email, token, shortId})
+
+    res.status(200).json({email, token, shortId, type})
   } catch (error) {
     res.status(400).json({error: error.message})
   }

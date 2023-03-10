@@ -4,7 +4,8 @@ const {
   getApplicants,
   getApplicant,
   deleteApplicant,
-  updateApplicant
+  updateApplicant,
+  getApplicantFromShortId
 } = require('../controllers/applicantController')
 const requireAuth = require('../middleware/requireAuth')
 
@@ -27,6 +28,9 @@ router.delete('/:id', deleteApplicant)
 
 // UPDATE a applicant
 router.patch('/:id', updateApplicant)
+
+// GET applicant from short Id
+router.get('/short/:shortId', getApplicantFromShortId)
 
 
 module.exports = router
