@@ -30,7 +30,7 @@ const getApplicant = async (req, res) => {
 
 // create new applicant
 const createApplicant = async (req, res) => {
-  const {name, numberOfJobApplications} = req.body
+  const {name, numberOfJobApplications, shortId} = req.body
 
   let emptyFields = []
 
