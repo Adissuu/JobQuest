@@ -1,4 +1,5 @@
 const Employer = require('../models/employerModel')
+const jopPostings = require('../models/jobPostingModel')
 const mongoose = require('mongoose')
 
 //get all employers
@@ -50,7 +51,7 @@ const createEmployer = async (req, res) => {
   // add doc to db
   try {
     const user_id = req.user._id
-    const employer = await Employer.create({title, load, reps, user_id})
+    const employer = await Employer.create({name, numberOfJobPostings, jobPostings, user_id})
     res.status(200).json(employer)
   } catch (error) {
     res.status(400).json({error: error.message})
