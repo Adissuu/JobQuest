@@ -6,6 +6,7 @@ const workoutRoutes = require('./routes/workouts')
 const jobPostingRoutes = require('./routes/jobPostings')
 const userRoutes = require('./routes/user')
 const applicantRoutes = require('./routes/applicants')
+const employerRoutes = require('./routes/employer')
 
 // express app
 const app = express()
@@ -23,6 +24,7 @@ app.use('/api/workouts', workoutRoutes)
 app.use('/api/jobPostings', jobPostingRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/applicants', applicantRoutes)
+app.use('/api/employers', employerRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
@@ -35,3 +37,4 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => {
     console.log(error)
   })
+  

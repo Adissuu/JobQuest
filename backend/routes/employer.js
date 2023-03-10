@@ -4,7 +4,8 @@ const {
   getEmployers,
   getEmployer,
   deleteEmployer,
-  updateEmployer
+  updateEmployer,
+  getEmployerFromShortId
 } = require('../controllers/employerController')
 const requireAuth = require('../middleware/requireAuth')
 
@@ -27,6 +28,10 @@ router.delete('/:id', deleteEmployer)
 
 // UPDATE a Employer
 router.patch('/:id', updateEmployer)
+
+// GET employer from short Id
+router.get('/short/:shortId', getEmployerFromShortId)
+
 
 
 module.exports = router

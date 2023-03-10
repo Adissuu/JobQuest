@@ -18,15 +18,14 @@ const getEmployer = async (req, res) => {
     return res.status(404).json({error: 'No such employer'})
   }
 
-  const employer = await employer.findById(id)
+  const employer = await Employer.findById(id)
 
   if (!employer) {
     return res.status(404).json({error: 'No such employer'})
   }
-  
+
   res.status(200).json(employer)
 }
-
 
 // create new employer
 const createEmployer = async (req, res) => {
@@ -39,9 +38,6 @@ const createEmployer = async (req, res) => {
   }
   if(!numberOfJobPostings) {
     emptyFields.push('numberOfJobPostings')
-  }
-  if(!jobPostings) {
-    emptyFields.push('jobPostings')
   }
   if(emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
@@ -64,7 +60,6 @@ const deleteEmployer = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({error: 'No such Employer'})
   }
-
   const employer = await Employer.findOneAndDelete({_id: id})
 
   if (!employer) {
@@ -89,15 +84,27 @@ const updateEmployer = async (req, res) => {
   if (!employer) {
     return res.status(400).json({error: 'No such employer'})
   }
-
   res.status(200).json(employer)
 }
 
+// get an employer from shortId
+const getEmployerFromShortId = async (req, res) => {
+  const { shortId } = req.params
+  
+  const employer = await Employer.find({shortId: shortId})
+
+  if (!employer) {
+    return res.status(404).json({error: 'No such employer'})
+  }
+  
+  res.status(200).json(employer)
+}
 
 module.exports = {
   getEmployers,
   getEmployer,
   createEmployer,
   deleteEmployer,
-  updateEmployer
+  updateEmployer,
+  getEmployerFromShortId
 }
