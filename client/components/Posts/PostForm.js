@@ -138,7 +138,7 @@ const PostForm = () => {
             </div>
           </div>
           <div>
-            <button class="bg-teal-500 hover:bg-teal-600 text-white py-2 px-3 rounded" type="submit">Create job</button>
+            <button class="bg-teal-500 hover:bg-teal-600 text-white py-2 px-3 rounded" type="submit">{router.query.id? "Update Posting":"Create job"}</button>
           </div>
         </form>
         <div>{notification.message}</div>
