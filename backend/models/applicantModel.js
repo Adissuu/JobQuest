@@ -7,8 +7,20 @@ const applicantSchema = new Schema({
     type: String,
     required: true
   },
-  numberOfJobApplications: {
-    type: Number,
+  courses: {
+    type: String,
+    required: true
+  },
+  skills: {
+    type: String,
+    required: true
+  },
+  about: {
+    type: String,
+    required: true
+  },
+  resume: {
+    type: String,
     required: true
   },
 }, { timestamps: true })
