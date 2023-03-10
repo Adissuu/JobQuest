@@ -25,11 +25,17 @@
     border-top-left-radius:15px;
     /* border-bottom: 3px solid green; */
 }
+.jobdescription .title {
+    padding-left: 0px;
+}
+
 .company {
     padding-left: 10px;
     padding-bottom: 10px;
 }
-
+.jobdescription .company {
+    padding-left: 0px;
+}
 .scrollable {
     height:85vh; /* or any value */
     overflow-y: auto;
@@ -50,6 +56,7 @@
     border-radius:5px;
     padding: 10px;
     color: white;
+    margin-top: 10px;
 }
 
 .managebuttons {
