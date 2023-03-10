@@ -44,7 +44,6 @@ const createApplicant = async (req, res) => {
     emptyFields.push('shortId')
   }
 
-
   // add doc to db
   try {
     const user_id = req.user._id
