@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
+const shortid = require('shortId')
 
 const Schema = mongoose.Schema
 
@@ -13,7 +14,12 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  shortId: {
+    type: String,
+    required: false
   }
+
 })
 
 // static signup method
@@ -39,7 +45,9 @@ userSchema.statics.signup = async function(email, password) {
   const salt = await bcrypt.genSalt(10)
   const hash = await bcrypt.hash(password, salt)
 
-  const user = await this.create({ email, password: hash })
+  const shortId = shortid.generate()
+
+  const user = await this.create({ email, password: hash, shortId })
 
   return user
 }
