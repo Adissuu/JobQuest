@@ -88,10 +88,26 @@ const updateApplicant = async (req, res) => {
 }
 
 
+// get an applicant from shortId
+const getApplicantFromShortId = async (req, res) => {
+  const { shortId } = req.params
+
+  const applicant = await Applicant.find({shortId: shortId})
+
+  if (!applicant) {
+    return res.status(404).json({error: 'No such applicant'})
+  }
+  
+  res.status(200).json(applicant)
+}
+
+
+
 module.exports = {
   getApplicants,
   getApplicant,
   createApplicant,
   deleteApplicant,
-  updateApplicant
+  updateApplicant,
+  getApplicantFromShortId
 }
