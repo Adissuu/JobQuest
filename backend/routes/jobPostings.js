@@ -4,7 +4,8 @@ const {
   getJobPostings,
   getJobPosting,
   deleteJobPosting,
-  updateJobPosting
+  updateJobPosting,
+  getAllJobPostingsByEmployer
 } = require('../controllers/jobPostingController')
 
 const requireAuth = require('../middleware/requireAuth')
@@ -28,6 +29,9 @@ router.delete('/:id', deleteJobPosting)
 
 // UPDATE a jobPosting
 router.patch('/:id', updateJobPosting)
+
+// GET all job postings by employer
+router.get('/employer/:id', getAllJobPostingsByEmployer)
 
 
 module.exports = router
