@@ -33,7 +33,7 @@ const ThemeToggle = () => {
         }
     }
     return (
-        <div>
+        <div className="z-10">
             {renderThemeChanger()}
         </div>
     );

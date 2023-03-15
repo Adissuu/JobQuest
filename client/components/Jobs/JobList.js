@@ -1,18 +1,14 @@
-import { myJobs } from "../../public/Jobs/dummy-jobs.js";
 import JobItem from "@/components/Jobs/JobItem";
 import styles from "../../styles/Jobs/jobs.module.css";
-import { useRouter } from "next/router.js";
 import Link from "next/link.js";
 
-function JobList() {
-  const router = useRouter();
 
-  let jobs = myJobs();
+function JobList(props) {
 
   let content;
-  content = jobs.map((job) => (
-    <Link  key={job.id} className={styles.jobitem} href={"/jobs/"+job.id}>
-      <JobItem title={job.title} company={job.company} />
+  content = props.jobs.map((job) => (
+    <Link  key={job._id} className={styles.jobitem} href={"/jobs/"+job._id}>
+      <JobItem title={job.jobTitle} employer={props.employers.find(employer => employer._id === job.employerId)}/>
     </Link>
   ));
   return (

@@ -12,7 +12,7 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 a {
@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
 .nav {
   width: 100vw;
   height: 90px;
@@ -41,3 +46,9 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.component {
+  height: calc(100vh - 90px);
+  overflow: scroll;
+}
+

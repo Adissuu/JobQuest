@@ -4,8 +4,9 @@ import Link from 'next/link';
 
 const SigninComponent = () => {
   const [values, setValues] = useState({
-    email: 'email@gmail.com',
-    password: 'thisIsNotTheSafestPassword',
+
+    email: '',
+    password: '',
     error: '',
     loading: false,
     message: '',
@@ -15,8 +16,35 @@ const SigninComponent = () => {
   const { email, password, error, loading, message, showForm } = values;
 
 
+  useEffect(() => {
+    isAuth() && Router.push(`/`);
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    //console.table({ name, email, password, error, loading, message, showForm });
+    setValues({ ...values, loading: true, error: false })
+    const user = { email, password }
+    signin(user).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error })
+      } else {
+        // save user token to cookie
+        // save user info to localstorage
+        // authenticate user
+        authenticate(data, () => {
+          if (isAuth() && isAuth().role == 1) {
+            Router.push(`/profile/recruiter`);
+          } else {
+            Router.push(`/profile/applicant`);
+          }
+        });
+      }
+    });
+  };
+
+  const handleChange = name => (e) => {
+    setValues({ ...values, error: false, [name]: e.target.value });
   };
 
 
@@ -30,13 +58,18 @@ const SigninComponent = () => {
               <label className="block text-sm font-bold mb-2">Email</label>
               <input value={email}
                 type="email"
-                className="w-full rounded dark:text-white pl-2" readOnly />
+
+                className="w-full rounded dark:text-white pl-2"
+                onChange={handleChange('email')}
+                placeholder="email@email.com" />
             </div>
             <div className="mb-6">
               <label className="block text-sm font-bold mb-2">Password</label>
               <input value={password}
                 type="Password"
-                className="w-full rounded dark:text-white pl-2" readOnly />
+                className="w-full rounded dark:text-white pl-2"
+                onChange={handleChange('password')}
+                placeholder="••••••••••" />
             </div>
 
             <div className="flex items-center justify-between">

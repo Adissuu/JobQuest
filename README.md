@@ -31,4 +31,4 @@ The login credentials for the website will be encrypted and stored in the databa
 |Louis-Charles Marquis|40177137|Louischarlesmarquis|Back-end developer|
 |Hicham Kitaz|40188246|hisham-kitaz|Back-end developer|
 |Michael Nittolo|40203394|dolphinz0|Front-end developer|
-|Timothy Morvan|41026094|TitiMMM|Front-end developer|
+|Timothy Morvan|40126094|TitiMMM & The-Einzelganger|Front-end developer|
