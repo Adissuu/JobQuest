@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 // get all jobPostings
 const getJobPostings = async (req, res) => {
-  const jobPostings = await JobPosting.find({}).sort({createdAt: -1})
+  const jobPostings = await JobPosting.find({}).sort({ createdAt: -1 })
 
   res.status(200).json(jobPostings)
 }
@@ -13,60 +13,60 @@ const getJobPosting = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: 'No such jobPosting'})
+    return res.status(404).json({ error: 'No such jobPosting' })
   }
 
   const jobPosting = await JobPosting.findById(id)
 
   if (!jobPosting) {
-    return res.status(404).json({error: 'No such jobPosting'})
+    return res.status(404).json({ error: 'No such jobPosting' })
   }
-  
+
   res.status(200).json(jobPosting)
 }
 
 
 // create new jobPosting
 const createJobPosting = async (req, res) => {
-  const {jobTitle, jobType, location, remote, description, employerId, employerName, employerWebsite} = req.body
+  const { jobTitle, jobType, location, remote, description, employerId, employerName, employerWebsite } = req.body
 
   let emptyFields = []
 
-  if(!jobTitle) {
+  if (!jobTitle) {
     emptyFields.push('jobTitle')
   }
-  if(!jobType) {
+  if (!jobType) {
     emptyFields.push('jobType')
   }
-  if(!location) {
+  if (!location) {
     emptyFields.push('location')
   }
-  if(!remote) {
+  if (!remote) {
     emptyFields.push('remote')
   }
-  if(!description) {
+  if (!description) {
     emptyFields.push('description')
   }
-  if(!employerId) {
+  if (!employerId) {
     emptyFields.push('employerId')
   }
-  if(!employerName) {
+  if (!employerName) {
     emptyFields.push('employerName')
   }
-  if(!employerWebsite) {
+  if (!employerWebsite) {
     emptyFields.push('employerWebsite')
   }
 
-  if(emptyFields.length > 0) {
+  if (emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
   }
 
   // add doc to db
   try {
-    const jobPosting = await JobPosting.create({jobTitle, jobType, location, remote, description, employerId, employerName, employerWebsite})
+    const jobPosting = await JobPosting.create({ jobTitle, jobType, location, remote, description, employerId, employerName, employerWebsite })
     res.status(200).json(jobPosting)
   } catch (error) {
-    res.status(400).json({error: error.message})
+    res.status(400).json({ error: error.message })
   }
 }
 
@@ -75,13 +75,13 @@ const deleteJobPosting = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: 'No such jobPosting'})
+    return res.status(404).json({ error: 'No such jobPosting' })
   }
 
-  const jobPosting = await JobPosting.findOneAndDelete({_id: id})
+  const jobPosting = await JobPosting.findOneAndDelete({ _id: id })
 
   if (!jobPosting) {
-    return res.status(400).json({error: 'No such jobPosting'})
+    return res.status(400).json({ error: 'No such jobPosting' })
   }
 
   res.status(200).json(jobPosting)
@@ -92,15 +92,15 @@ const updateJobPosting = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: 'No such jobPosting'})
+    return res.status(404).json({ error: 'No such jobPosting' })
   }
 
-  const jobPosting = await JobPosting.findOneAndUpdate({_id: id}, {
+  const jobPosting = await JobPosting.findOneAndUpdate({ _id: id }, {
     ...req.body
   })
 
   if (!jobPosting) {
-    return res.status(400).json({error: 'No such jobPosting'})
+    return res.status(400).json({ error: 'No such jobPosting' })
   }
 
   res.status(200).json(JobPosting)
@@ -117,14 +117,14 @@ const getAllJobPostingsByEmployer = async (req, res) => {
   //   return res.status(404).json({error: 'No such jobPosting'})
   // }
 
-  const jobPostings = await JobPosting.find({employerId: id})
+  const jobPostings = await JobPosting.find({ employerId: id })
 
 
 
   if (!jobPostings) {
-    return res.status(404).json({error: 'No such jobPosting'})
+    return res.status(404).json({ error: 'No such jobPosting' })
   }
-  
+
   res.status(200).json(jobPostings)
 }
 
