@@ -1,0 +1,78 @@
+.joblist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.jobitem  {
+    width: 400px;
+    margin: 10px;
+    border: gray 1px solid;
+    border-radius: 15px;
+}
+
+.jobitem:hover {
+    background-color: rgba(196, 196, 196, 0.305);
+}
+
+.title {
+    padding: 10px;
+    padding-bottom: 0px;
+    font-weight: bold;
+    /* color: white;
+    background-color: rgb(99, 182, 105); */
+    border-top-right-radius:15px;
+    border-top-left-radius:15px;
+    /* border-bottom: 3px solid green; */
+}
+.jobdescription .title {
+    padding-left: 0px;
+}
+
+.company {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+.jobdescription .company {
+    padding-left: 0px;
+}
+.scrollable {
+    height:85vh; /* or any value */
+    overflow-y: auto;
+}
+
+.jobcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.jobdescription {
+    width:50%;
+    padding-left: 25px;
+}
+
+.applybtn {
+    background-color: rgb(133, 209, 139);
+    border-radius:5px;
+    padding: 10px;
+    color: white;
+    margin-top: 10px;
+}
+
+.managebuttons {
+
+}
+
+.deleteposting {
+    margin: 0px 5px 0px 0px;
+}
+
+.updateposting {
+    margin: 0px 0px 0px 5px;
+}
+
+@media screen and (max-width: 500px) {
+    .jobitem {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+  }

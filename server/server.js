@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const workoutRoutes = require('./routes/workouts')
 const jobPostingRoutes = require('./routes/jobPostings')
 const userRoutes = require('./routes/user')
 const applicantRoutes = require('./routes/applicants')
@@ -20,14 +19,14 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/workouts', workoutRoutes)
 app.use('/api/jobPostings', jobPostingRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/applicants', applicantRoutes)
 app.use('/api/employers', employerRoutes)
 
 // connect to db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.ATLAS_URI)
   .then(() => {
     // listen for requests
     app.listen(process.env.PORT, () => {
@@ -37,4 +36,3 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => {
     console.log(error)
   })
-  
