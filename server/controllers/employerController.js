@@ -3,9 +3,7 @@ const mongoose = require('mongoose')
 
 //get all employers
 const getEmployers = async (req, res) => {
-  const user_id = req.user._id
-
-  const employers = await Employer.find({user_id}).sort({createdAt: -1})
+  const employers = await Employer.find({}).sort({createdAt: -1})
 
   res.status(200).json(employers)
 }
