@@ -20,7 +20,7 @@ export const createPost = (post, token) => {
 };
 
 export const listJobs = () => {
-    return fetch(`${API}/jobPosting`, {
+    return fetch(`${API}/getJobPostings`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',

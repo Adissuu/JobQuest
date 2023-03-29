@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { signup, isAuth, signin } from '../../actions/auth';
+import { signup, isAuth } from '../../actions/auth';
 import Image from 'next/image'
 import signupImg from '@/public/Signin-up/Signup_img.png';
 import Router from 'next/router';
@@ -18,10 +18,9 @@ const SignupComponent = () => {
         message: '',
         showForm: true
     })
-    
-    const { name, email, password, confirmPassword, role, tempRole, error, loading, message, showForm } = values;
 
     const { name, email, password, confirmPassword, role, tempRole, error, loading, message, showForm } = values;
+
     // if signed in, no signup/signin pages
     useEffect(() => {
         isAuth() && Router.push(`/`);
@@ -52,24 +51,6 @@ const SignupComponent = () => {
                     showForm: true
                 })
             }
-
-            signin(user).then(data => {
-                if (data.error) {
-                    setValues({ ...values, error: data.error })
-                } else {
-                    // save user token to cookie
-                    // save user info to localstorage
-                    // authenticate user
-                    authenticate(data, () => {
-                        if (isAuth() && isAuth().role == 0) {
-                            Router.push(`/profile/crudapplicant`)
-                        }
-                        else {
-                            Router.push(`/profile/crudemployer`)
-                        }
-                    });
-                }
-            });
         })
     };
 
@@ -139,7 +120,7 @@ const SignupComponent = () => {
     }
 
     return (
-        <div>
+        <div className=''>
             {showForm && signupForm()}
         </div>
     )

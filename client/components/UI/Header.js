@@ -25,6 +25,7 @@ const Header = ({pathname}) => {
                     <Link href="/internships" className={`${pathname === "internships" ? "text-green-500" : ""} mx-2 hover:text-green-500 transition-colors z-10`}>Internships</Link>
                     <Link href="/recruit" className={`${pathname === "recruit" ? "text-green-500" : ""} mx-2 hover:text-green-500 transition-colors z-10`}>Recruit</Link>
                     <Link href="/post" className={`${pathname === "post" ? "text-green-500" : ""} mx-2 hover:text-green-500 transition-colors z-10`}>New Posting</Link>
+                    <Link href="/jobs?user=recruiter" className={`${pathname === "manage" ? "text-green-500" : ""} mx-2 hover:text-green-500 transition-colors z-10`}>Manage Postings</Link>
                 </ol>
                 <div className="flex items-center">
                     <Link href="/signin" className="mx-2 p-2 border border-green-500 rounded text-green-500

@@ -1,25 +1,38 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-require("dotenv").config({ path: "./config.env" });
-const port = process.env.PORT || 5000;
-app.use(cors());
-app.use(express.json());
-app.use(require("./routes/record"));
-app.use(require("./routes/employer"))
-app.use(require("./routes/jobPosting"))
-app.use(require("./routes/applicant"))
+require('dotenv').config()
 
+const express = require('express')
+const mongoose = require('mongoose')
+const jobPostingRoutes = require('./routes/jobPostings')
+const userRoutes = require('./routes/user')
+const applicantRoutes = require('./routes/applicants')
+const employerRoutes = require('./routes/employer')
 
+// express app
+const app = express()
 
-// get driver connection
-const dbo = require("./db/conn");
+// middleware
+app.use(express.json())
 
-app.listen(port, () => {
-  // perform a database connection when server starts
-  dbo.connectToServer(function (err) {
-    if (err) console.error(err);
+app.use((req, res, next) => {
+  console.log(req.path, req.method)
+  next()
+})
 
-  });
-  console.log(`Server is running on port: ${port}`);
-});
+// routes
+app.use('/api/jobPostings', jobPostingRoutes)
+app.use('/api/user', userRoutes)
+app.use('/api/applicants', applicantRoutes)
+app.use('/api/employers', employerRoutes)
+
+// connect to db
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    // listen for requests
+    app.listen(process.env.PORT, () => {
+      console.log('connected to db & listening on port', process.env.PORT)
+    })
+  })
+  .catch((error) => {
+    console.log(error)
+  })
