@@ -3,9 +3,10 @@ const mongoose = require('mongoose')
 
 // get all applicants
 const getApplicants = async (req, res) => {
-  const user_id = req.user._id
 
-  const applicants = await Applicant.find({user_id}).sort({createdAt: -1})
+  //console.log(req.user)
+
+  const applicants = await Applicant.find({}).sort({createdAt: -1})
 
   res.status(200).json(applicants)
 }
