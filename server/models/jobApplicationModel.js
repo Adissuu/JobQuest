@@ -1,12 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const jobApplicationSchema = new Schema({
-  jobPosting: {
+  jobPostingId: {
     type: String,
     required: true
   },
 
-  applicant: {
+  employerId: {
+    type: String,
+    required: true
+  },
+
+  applicantId: {
     type: String,
     required: true
   },
