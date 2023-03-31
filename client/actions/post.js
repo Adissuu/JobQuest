@@ -20,7 +20,7 @@ export const createPost = (post, token) => {
 };
 
 export const listJobs = () => {
-    return fetch(`${API}/getJobPostings`, {
+    return fetch(`${API}/api/jobPostings`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -46,7 +46,7 @@ export const listPostsWithType = (type) => {
 };
 
 export const singlePost = (id) => {
-    return fetch(`${API}/jobposting/${id}`, {
+    return fetch(`${API}/api/jobPostings/${id}`, {
         method: 'GET',
     })
         .then(response => {
@@ -57,7 +57,7 @@ export const singlePost = (id) => {
 }
 
 export const removePost = (id, token) => {
-    return fetch(`${API}/post/${id}`, {
+    return fetch(`${API}/api/jobPostings/${id}`, {
         method: 'DELETE',
         headers: {
             Accept: 'application/json',

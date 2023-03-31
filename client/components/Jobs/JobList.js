@@ -13,7 +13,7 @@ function JobList(props) {
     console.log(`id from deleteHandler: ${id}`);
     try {
       setRequestStatus("pending");
-      await fetch(`http://localhost:8000/jobPosting/${id}`, {
+      await fetch(`http://localhost:8000/api/jobPostings/${id}`, {
         method: "DELETE",
         // body: JSON.stringify({
         //   jobTitle: jobTitle,
@@ -55,8 +55,8 @@ function JobList(props) {
       message: "Error, Job Posting not deleted.",
     };
   }
-  useEffect(() => {
-  }, [requestStatus]);
+  // useEffect(() => {
+  // }, [requestStatus]);
 
   const setManageContent = (jobId) => {
     let manageContent;

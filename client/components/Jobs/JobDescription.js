@@ -17,7 +17,7 @@ function JobDescription(props) {
         <Link href={"/jobs/view/"+job._id} className={styles.title}>{job.jobTitle}</Link>
         <div className={styles.company}>{employerContent}</div>
         <div>{job.description}</div>
-        <button className={styles.applybtn}>Apply</button>
+        <Link href={"/apply/"+job._id} className={styles.applybtn}>Apply</Link>
     </div>
 }
 
