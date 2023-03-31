@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Applicant = require('../models/applicantModel').Schema
 
 const Schema = mongoose.Schema
 
@@ -13,6 +14,9 @@ const jobPostingSchema = new Schema({
   employerId: {type: String, required: true},
   employerName: {type: String, required: true},
   employerWebsite: {type: String, required: true},
+
+  applicants: {type: [Applicant], required: false}
+
 }, { timestamps: true })
 
 module.exports = mongoose.model('JobPosting', jobPostingSchema)

@@ -6,6 +6,7 @@ const jobPostingRoutes = require('./routes/jobPostings')
 const userRoutes = require('./routes/user')
 const applicantRoutes = require('./routes/applicants')
 const employerRoutes = require('./routes/employer')
+const jobApplicationRoutes = require('./routes/jobApplications')
 
 // express app
 const app = express()
@@ -23,6 +24,7 @@ app.use('/api/jobPostings', jobPostingRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/applicants', applicantRoutes)
 app.use('/api/employers', employerRoutes)
+app.use('/api/jobApplications', jobApplicationRoutes)
 
 // connect to db
 mongoose.set('strictQuery', false);

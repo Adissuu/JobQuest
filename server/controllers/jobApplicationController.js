@@ -1,4 +1,7 @@
 const JobApplication = require('../models/jobApplicationModel')
+const Applicant = require('../models/applicantModel')
+const JobPosting = require('../models/jobPostingModel')
+
 const mongoose = require('mongoose')
 
 // get all jobApplications
@@ -31,12 +34,12 @@ const getJobApplication = async (req, res) => {
 
 // create new jobApplication
 const createJobApplication = async (req, res) => {
-  const {jopPostingId, employerId, applicantId} = req.body
+  const {jobPostingId, employerId, applicantId} = req.body
 
   let emptyFields = []
 
-  if(!jopPostingId) {
-    emptyFields.push('jopPostingId')
+  if(!jobPostingId) {
+    emptyFields.push('jobPostingId')
   }
   if(!employerId) {
     emptyFields.push('employerId')
@@ -60,16 +63,33 @@ const createJobApplication = async (req, res) => {
     invalidFields.push('applicantId')
   }
   if(invalidFields.length > 0) {
-    return res.status(400).json({ error: 'Please fill in all the fields', invalidFields })
+    return res.status(400).json({ error: 'Please enter valid IDs', invalidFields })
   }
 
+  //  add the applicant to the list of applicants of the jobPosting
 
+  try {
+    const applicantToAdd = Applicant.findById(applicantId);
+    const jobPosting = await JobPosting.findOneAndUpdate({ _id: jobPostingId }, {
+      //  $push adds the new applicant to the existing array inside the jobPosting
+      $push: { applicants: applicantToAdd }
+    })
 
+  //  and add the jobPosting to the list of jobPostingsAppliedTo of the applicant
+    // const jobPostingToAdd = jobPosting.findById(jobPostingId);
+    // const applicant = await Applicant.findOneAndUpdate({ _id: applicantId }, {
+    //   //  $push adds the new jobPosting to the existing array inside the applicant
+    //   $push: { jobPostingsAppliedTo: jobPostingToAdd }
+    // })
+  } catch (error)
+  {
+    res.status(400).json({error: error.message})
+  }
 
   // add doc to db
   try {
     const user_id = req.user._id
-    const jobApplication = await JobApplication.create({jopPostingId, employerId, applicantId})
+    const jobApplication = await JobApplication.create({jobPostingId, employerId, applicantId})
     res.status(200).json(jobApplication)
   } catch (error) {
     res.status(400).json({error: error.message})
@@ -111,6 +131,7 @@ const updateJobApplication = async (req, res) => {
 
   res.status(200).json(jobApplication)
 }
+
 
 
 

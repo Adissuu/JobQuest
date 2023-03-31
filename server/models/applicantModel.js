@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const JobPosting = require('../models/jobPostingModel')
 const Schema = mongoose.Schema
 const applicantSchema = new Schema({
   name: {
@@ -12,7 +13,14 @@ const applicantSchema = new Schema({
   shortId: {
     type: String,
     required: false
-  }
+  },
+
+  //  removed because it creates a circular dependency 
+  // jobPostingsAppliedTo: {
+  //   type: Array(JobPosting),
+  //   required: false
+  // }
+
 }, { timestamps: true })
 
 module.exports = mongoose.model('Applicant', applicantSchema)
