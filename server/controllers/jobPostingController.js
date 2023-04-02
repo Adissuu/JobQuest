@@ -62,6 +62,7 @@ const createJobPosting = async (req, res) => {
     return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
   }
 
+  //  validate the employer id
   if (!mongoose.Types.ObjectId.isValid(employerId)) {
     return res.status(404).json({error: 'No such employer'})
   }
