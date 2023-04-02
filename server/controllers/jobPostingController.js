@@ -62,6 +62,11 @@ const createJobPosting = async (req, res) => {
     return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
   }
 
+  if (!mongoose.Types.ObjectId.isValid(employerId)) {
+    return res.status(404).json({error: 'No such employer'})
+  }
+
+
   // add doc to db
   try {
     const jobPosting = await JobPosting.create({ jobTitle, jobType, location, remote, description, employerId, employerName, employerWebsite })
