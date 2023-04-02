@@ -34,11 +34,7 @@ const SigninComponent = () => {
         // save user info to localstorage
         // authenticate user
         authenticate(data, () => {
-          if (isAuth() && isAuth().role == 1) {
-            Router.push(`/profile/recruiter`);
-          } else {
-            Router.push(`/profile/applicant`);
-          }
+          Router.push('/')
         });
       }
     });

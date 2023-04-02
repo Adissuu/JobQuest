@@ -40,6 +40,7 @@ const Header = ({ pathname }) => {
                         hover:text-white hover:bg-green-500 transition-colors z-10">Log In</Link>
                             <Link href="/signup" className="ml-2 mr-4 bg-green-500 rounded p-2 text-white z-10">Sign Up</Link>
                         </>)}
+                    {isAuth() && (<Link href="/" className="ml-2 mr-4 bg-green-500 rounded p-2 text-white z-10"> {`${isAuth().name}`}</Link>)}
                     {isAuth() && (<Link href="/" className="ml-2 mr-4 bg-green-500 rounded p-2 text-white z-10" onClick={() => signout(() => Router.replace('/signin'))}>Log Out</Link>)}
                     <ThemeToggle className="mx-2" />
                 </div>
