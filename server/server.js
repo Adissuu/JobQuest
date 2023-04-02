@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors');
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -17,6 +18,14 @@ app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
 })
+
+// cors
+if (process.env.NODE_ENV == 'development') {
+  app.use(cors({
+    origin: `${process.env.CLIENT_URL}`
+  }))
+
+}
 
 // routes
 app.use('/api/jobPostings', jobPostingRoutes)

@@ -6,6 +6,10 @@ const shortid = require('shortId')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
@@ -27,14 +31,14 @@ const userSchema = new Schema({
 })
 
 // static signup method
-userSchema.statics.signup = async function(email, password, type) {
+userSchema.statics.signup = async function (name, email, password, type) {
 
   // validation
   //console.log(email)
   //console.log(password)
   //console.log(type)
 
-  if (!email || !password || !type) {
+  if (!name || !email || !password || !type) {
     throw Error('All fields must be filled')
   }
   if (!validator.isEmail(email)) {
@@ -55,13 +59,13 @@ userSchema.statics.signup = async function(email, password, type) {
 
   const shortId = shortid.generate()
 
-  const user = await this.create({ email, password: hash, shortId, type })
+  const user = await this.create({ name, email, password: hash, shortId, type })
 
   return user
 }
 
 // static login method
-userSchema.statics.login = async function(email, password) {
+userSchema.statics.login = async function (email, password) {
 
   if (!email || !password) {
     throw Error('All fields must be filled')
