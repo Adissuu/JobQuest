@@ -3,7 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "../Utils/ThemeToggle";
 import logo from '../../public/Layout/logo.png'
+
 import { isAuth, signout } from "@/actions/auth";
+
 
 const Header = ({ pathname }) => {
     return (
