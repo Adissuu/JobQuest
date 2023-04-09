@@ -11,15 +11,14 @@ const SignupComponent = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 0,
-        tempRole: '',
+        type: 'Job Seeker',
         error: '',
         loading: false,
         message: '',
         showForm: true
     })
 
-    const { name, email, password, confirmPassword, role, tempRole, error, loading, message, showForm } = values;
+    const { name, email, password, confirmPassword, type, error, loading, message, showForm } = values;
 
     // if signed in, no signup/signin pages
     useEffect(() => {
@@ -28,11 +27,8 @@ const SignupComponent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if (tempRole == "Recruiter") { setValues({ ...values, role: 1 }) }
-        else { setValues({ ...values, role: 0 }) }
         setValues({ ...values, loading: true, error: false })
-        const user = { name, email, password, role }
+        const user = { name, email, password, type }
         signup(user).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error })
@@ -43,8 +39,7 @@ const SignupComponent = () => {
                     email: '',
                     password: '',
                     confirmPassword: '',
-                    role: 0,
-                    tempRole: '',
+                    type: '',
                     error: '',
                     loading: false,
                     message: '',
@@ -104,7 +99,7 @@ const SignupComponent = () => {
                         <div className="mb-6">
                             <label className="block text-gray-700 rounded text-sm font-bold mb-2">Choose Your Class</label>
                             <select className="dark:text-white pl-2 w-full rounded"
-                                onChange={handleChange('tempRole')}>
+                                onChange={handleChange('type')}>
                                 <option>Job Seeker</option>
                                 <option>Recruiter</option>
                             </select>

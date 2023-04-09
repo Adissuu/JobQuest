@@ -5,7 +5,11 @@ import styles from '@/styles/Home.module.css'
 import Layout from '@/components/UI/Layout'
 
 const inter = Inter({ subsets: ['latin'] })
+import dynamic from "next/dynamic";
 
+const AuthButton = dynamic(() => import('@/components/Utils/AuthButton'), {
+  ssr: false,
+});
 
 export default function Index() {
   return (
@@ -17,10 +21,10 @@ export default function Index() {
               <h1 className='text-6xl font-bold'>JobQuest</h1>
               <p className='ml-36 text-2xl'>Where your adventure begins</p>
             </div>
-            <Link href="/signup" className='hover:shadow-xl transition p-4 text-white rounded bg-orange-500 mt-36 font-bold z-10 text-2xl'>Start Now</Link>
+            <AuthButton />
           </div>
           <div className='pt-8 z-10'>
-            <Image src='/Landing_Page/hero.svg' width={650} height={650} alt="Jobquest logo" priority/>
+            <Image src='/Landing_Page/hero.svg' width={650} height={650} alt="Jobquest logo" priority />
           </div>
         </div>
       </Layout>

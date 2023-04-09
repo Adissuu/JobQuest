@@ -17,7 +17,9 @@ export const handleResponse = response => {
 };
 
 export const signup = (user) => {
-    return fetch(`${API}/signup`, {
+    console.log(user)
+    return fetch(`${API}/api/user/signup`, {
+        //mode: 'no-cors',
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -29,11 +31,12 @@ export const signup = (user) => {
             console.log(response)
             return response.json()
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(`here ${err}`))
 }
 
 export const signin = (user) => {
-    return fetch(`${API}/signin`, {
+    return fetch(`${API}/api/user/login`, {
+        //mode: 'no-cors',
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -99,6 +102,7 @@ export const removeLocalStorage = (key) => {
 
 // authenticate
 export const authenticate = (data, next) => {
+    console.log(`here ${data}`)
     setCookie('token', data.token);
     setLocalStorage('user', data.user);
     next();
