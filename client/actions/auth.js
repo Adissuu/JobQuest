@@ -31,7 +31,7 @@ export const signup = (user) => {
             console.log(response)
             return response.json()
         })
-        .catch(err => console.log(`here ${err}`))
+        .catch(err => console.log(err))
 }
 
 export const signin = (user) => {
