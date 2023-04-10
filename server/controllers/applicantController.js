@@ -36,7 +36,11 @@ const getApplicantsByJobPosting = async (req, res) => {
   //console.log(req)
   //console.log(id)
 
-  const jobPosting = await JobPosting.findById({ id })
+  console.log(mongoose.Types.ObjectId.isValid('640a39609df61efc7ee0fad5'))
+
+  const jobPosting = await JobPosting.findById( id )
+  //console.log(jobPosting);
+
 
   if (!jobPosting) {
     return res.status(404).json({ error: 'No such jobPosting' })

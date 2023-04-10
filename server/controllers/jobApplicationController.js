@@ -94,9 +94,9 @@ const createJobApplication = async (req, res) => {
   try {
     const user_id = req.user._id
     const jobApplication = await JobApplication.create({jobPostingId, employerId, applicantId})
-    console.log("inserted job application")
+    //console.log("inserted job application")
     res.status(200).json(jobApplication)
-    console.log("sent response 200")
+    //console.log("sent response 200")
   } catch (error) {
     //console.log("caught error")
     res.status(400).json({error: error.message})
