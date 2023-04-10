@@ -5,7 +5,8 @@ const {
   getApplicant,
   deleteApplicant,
   updateApplicant,
-  getApplicantFromShortId
+  getApplicantFromShortId,
+  getApplicantsByJobPosting
 } = require('../controllers/applicantController')
 const requireAuth = require('../middleware/requireAuth')
 
@@ -32,5 +33,7 @@ router.patch('/:id', updateApplicant)
 // GET applicant from short Id
 router.get('/short/:shortId', getApplicantFromShortId)
 
+//  GET all applicants for a specific job posting
+router.get('/jobPosting/:id', getApplicantsByJobPosting)
 
 module.exports = router

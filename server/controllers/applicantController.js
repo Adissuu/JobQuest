@@ -1,11 +1,14 @@
 const Applicant = require('../models/applicantModel')
+const JobPosting = require('../models/jobPostingModel')
+const JobApplication = require('../models/jobApplicationModel')
 const mongoose = require('mongoose')
 
 // get all applicants
 const getApplicants = async (req, res) => {
-  const user_id = req.user._id
 
-  const applicants = await Applicant.find({user_id}).sort({createdAt: -1})
+  //console.log(req.user)
+
+  const applicants = await Applicant.find({}).sort({createdAt: -1})
 
   res.status(200).json(applicants)
 }
@@ -27,6 +30,25 @@ const getApplicant = async (req, res) => {
   res.status(200).json(applicant)
 }
 
+//  get applicants for a specified jobPosting
+const getApplicantsByJobPosting = async (req, res) => {
+  const { id } = req.params
+  //console.log(req)
+  //console.log(id)
+
+  //console.log(mongoose.Types.ObjectId.isValid('640a39609df61efc7ee0fad5'))
+
+  const jobPosting = await JobPosting.findById( id )
+  //console.log(jobPosting);
+
+
+  if (!jobPosting) {
+    return res.status(404).json({ error: 'No such jobPosting' })
+  }
+  const applicants = jobPosting.applicants
+
+  res.status(200).json(applicants)
+}
 
 // create new applicant
 const createApplicant = async (req, res) => {
@@ -116,5 +138,6 @@ module.exports = {
   createApplicant,
   deleteApplicant,
   updateApplicant,
-  getApplicantFromShortId
+  getApplicantFromShortId,
+  getApplicantsByJobPosting
 }

@@ -1,4 +1,7 @@
 const JobPosting = require('../models/jobPostingModel')
+const Applicant = require('../models/applicantModel')
+
+const JobApplication = require('../models/jobApplicationModel')
 const mongoose = require('mongoose')
 
 // get all jobPostings
@@ -25,6 +28,22 @@ const getJobPosting = async (req, res) => {
   res.status(200).json(jobPosting)
 }
 
+//  get jobPostings for a specified applicant
+const getAllJobPostingsByApplicant = async (req, res) => {
+  const { id } = req.params
+  //console.log(req)
+  //console.log(id)
+
+  const applicant = await Applicant.findById( id )
+  //console.log(applicant);
+
+  if (!applicant) {
+    return res.status(404).json({ error: 'No such jobPosting' })
+  }
+  const jobPostings = applicant.jobPostingsAppliedTo
+
+  res.status(200).json(jobPostings)
+}
 
 // create new jobPosting
 const createJobPosting = async (req, res) => {
@@ -60,6 +79,12 @@ const createJobPosting = async (req, res) => {
   if (emptyFields.length > 0) {
     return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
   }
+
+  //  validate the employer id
+  if (!mongoose.Types.ObjectId.isValid(employerId)) {
+    return res.status(404).json({error: 'No such employer'})
+  }
+
 
   // add doc to db
   try {
@@ -106,7 +131,6 @@ const updateJobPosting = async (req, res) => {
   res.status(200).json(JobPosting)
 }
 
-
 // get all jobPostings for a specified employer
 const getAllJobPostingsByEmployer = async (req, res) => {
   const { id } = req.params
@@ -119,8 +143,6 @@ const getAllJobPostingsByEmployer = async (req, res) => {
 
   const jobPostings = await JobPosting.find({ employerId: id })
 
-
-
   if (!jobPostings) {
     return res.status(404).json({ error: 'No such jobPosting' })
   }
@@ -128,6 +150,47 @@ const getAllJobPostingsByEmployer = async (req, res) => {
   res.status(200).json(jobPostings)
 }
 
+/*
+OLD METHOD DO NOT USE
+// get all jobPostings applied to by a specific applicant
+const getAllJobPostingsByApplicant = async (req, res) => {
+  const { id } = req.params
+  //console.log(req)
+  //console.log(id)
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such applicant'})
+  }
+
+  //  start by grabbing the job applications
+  const jobApplications = await JobApplication.find({ applicantId: id })
+
+  //console.log("jobApplications:", jobApplications)
+
+  const jobPostingsAppliedTo = new Set();
+  //  make list of job postings by job application 
+  jobApplications.forEach(async jobApplication => {
+
+    if (!mongoose.Types.ObjectId.isValid(jobApplication.jobPostingId)) {
+      return res.status(404).json({error: 'one of the jobPostings from the jobApplications doesnt exist'})
+    }
+  
+    var jobPosting = await JobPosting.findById(jobApplication.jobPostingId)
+    console.log("jobApplication: ", jobApplication)
+    console.log("jobPosting:", jobPosting)
+    console.log(typeof(jobPosting))
+
+    jobPostingsAppliedTo.add(jobPosting)
+    jobPostingsAppliedTo.add({name: "steben"})
+    })
+
+    jobPostingsAppliedTo.add({name: "janathan"})
+
+    console.log("jobPostingsAppliedTo:", jobPostingsAppliedTo)
+
+  res.status(200).json(jobPostingsAppliedTo)
+}
+*/
 
 module.exports = {
   getJobPostings,
@@ -135,5 +198,6 @@ module.exports = {
   createJobPosting,
   deleteJobPosting,
   updateJobPosting,
-  getAllJobPostingsByEmployer
+  getAllJobPostingsByEmployer,
+  getAllJobPostingsByApplicant
 }
