@@ -16,9 +16,9 @@ const applicantSchema = new Schema({
   },
 
   //  removed because it creates a circular dependency 
-  // jobPostingsAppliedTo: {
-  //   type: Array(JobPosting),
-  //   required: false
+  //  jobPostingsAppliedTo: {
+  //  type: Array(JobPosting),
+  //  required: false
   // }
 
 }, { timestamps: true })

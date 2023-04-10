@@ -28,7 +28,7 @@ app.use('/api/jobApplications', jobApplicationRoutes)
 
 // connect to db
 mongoose.set('strictQuery', false);
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI,)
   .then(() => {
     // listen for requests
     app.listen(process.env.PORT, () => {

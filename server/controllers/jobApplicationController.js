@@ -3,6 +3,7 @@ const Applicant = require('../models/applicantModel')
 const JobPosting = require('../models/jobPostingModel')
 
 const mongoose = require('mongoose')
+const jobApplicationModel = require('../models/jobApplicationModel')
 
 // get all jobApplications
 const getJobApplications = async (req, res) => {
@@ -69,31 +70,40 @@ const createJobApplication = async (req, res) => {
   //  add the applicant to the list of applicants of the jobPosting
 
   try {
-    const applicantToAdd = Applicant.findById(applicantId);
+    var applicantToAdd = null
+    await Applicant.findById(applicantId).exec().then(function(doc) {
+      console.log("doc: ", doc)
+      applicantToAdd = doc;
+    });
+
+    console.log("applicantToAdd:", applicantToAdd)
+    //console.log(typeof(applicantToAdd))
+
     const jobPosting = await JobPosting.findOneAndUpdate({ _id: jobPostingId }, {
       //  $push adds the new applicant to the existing array inside the jobPosting
       $push: { applicants: applicantToAdd }
     })
-
-  //  and add the jobPosting to the list of jobPostingsAppliedTo of the applicant
-    // const jobPostingToAdd = jobPosting.findById(jobPostingId);
-    // const applicant = await Applicant.findOneAndUpdate({ _id: applicantId }, {
-    //   //  $push adds the new jobPosting to the existing array inside the applicant
-    //   $push: { jobPostingsAppliedTo: jobPostingToAdd }
-    // })
   } catch (error)
   {
+    console.log("caught error pushing applicant")
+    console.log(error)
     res.status(400).json({error: error.message})
-  }
+  }  
 
   // add doc to db
   try {
     const user_id = req.user._id
     const jobApplication = await JobApplication.create({jobPostingId, employerId, applicantId})
+    console.log("inserted job application")
     res.status(200).json(jobApplication)
+    console.log("sent response 200")
   } catch (error) {
+    //console.log("caught error")
     res.status(400).json({error: error.message})
   }
+
+  
+
 }
 
 // delete a jobApplication
