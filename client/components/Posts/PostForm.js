@@ -19,7 +19,7 @@ const PostForm = () => {
       event.preventDefault();
       try {
         setRequestStatus('pending');
-      await fetch(`http://localhost:8000/jobPosting/${router.query.id?`update/${router.query.id}`:"add"}`, {
+      await fetch(`http://localhost:8000/api/jobPostings/${router.query.id?`update/${router.query.id}`:"add"}`, {
         method: 'POST',
         body: JSON.stringify({
           jobTitle: jobTitle,

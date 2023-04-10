@@ -47,6 +47,8 @@
 }
 
 .jobdescription {
+    display:flex;
+    flex-direction: column;
     width:50%;
     padding-left: 25px;
 }
@@ -57,6 +59,7 @@
     padding: 10px;
     color: white;
     margin-top: 10px;
+    width: 63px;
 }
 
 .managebuttons {
