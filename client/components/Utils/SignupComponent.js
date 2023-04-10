@@ -53,7 +53,7 @@ const SignupComponent = () => {
     };
 
 
-    const showLoading = () => (loading ? <div className="absolute top-1/4 alert alert-info">Loading...</div> : '');
+    const showLoading = () => (loading ? <div className="absolute top-1/4">Loading...</div> : '');
     const showError = () => (error ? (<div className="absolute top-1/4 bg-green-100 border-t border-b border-100 text-red-800 px-4 py-3 rounded m-2" role="alert">
         <p className="font-bold">Error!</p>
         <p className="text-sm">{error}</p>

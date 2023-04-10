@@ -40,6 +40,17 @@ const SigninComponent = () => {
     });
   };
 
+
+  const showLoading = () => (loading ? <div className="absolute top-1/4">Loading...</div> : '');
+  const showError = () => (error ? (<div className="absolute top-1/4 bg-green-100 border-t border-b border-100 text-red-800 px-4 py-3 rounded m-2" role="alert">
+    <p className="font-bold">Error!</p>
+    <p className="text-sm">{error}</p>
+  </div>) : '');
+  const showMessage = () => (message ? (<div className="absolute top-1/4 bg-green-500 0 px-4 py-3 rounded" role="alert">
+    <p className="font-bold">Success!</p>
+    <p className="text-sm">{message}</p>
+  </div>) : '');
+
   const handleChange = name => (e) => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
@@ -85,6 +96,9 @@ const SigninComponent = () => {
   return (
     <>
       <div className='max-w-md'>
+        {showError()}
+        {showLoading()}
+        {showMessage()}
         {showForm && signinForm()}
       </div>
     </>
