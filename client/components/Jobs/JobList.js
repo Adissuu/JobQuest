@@ -5,6 +5,7 @@ import Link from "next/link.js";
 import { useState, useEffect } from "react";
 
 function JobList(props) {
+  console.log(props.jobs);
   const [requestStatus, setRequestStatus] = useState("");
 
   const router = useRouter();
