@@ -36,7 +36,7 @@ const getApplicantsByJobPosting = async (req, res) => {
   //console.log(req)
   //console.log(id)
 
-  console.log(mongoose.Types.ObjectId.isValid('640a39609df61efc7ee0fad5'))
+  //console.log(mongoose.Types.ObjectId.isValid('640a39609df61efc7ee0fad5'))
 
   const jobPosting = await JobPosting.findById( id )
   //console.log(jobPosting);
@@ -49,7 +49,6 @@ const getApplicantsByJobPosting = async (req, res) => {
 
   res.status(200).json(applicants)
 }
-
 
 // create new applicant
 const createApplicant = async (req, res) => {

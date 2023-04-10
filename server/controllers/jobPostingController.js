@@ -133,7 +133,7 @@ const getAllJobPostingsByEmployer = async (req, res) => {
   res.status(200).json(jobPostings)
 }
 
-
+/*
 // get all jobPostings applied to by a specific applicant
 const getAllJobPostingsByApplicant = async (req, res) => {
   const { id } = req.params
@@ -147,7 +147,9 @@ const getAllJobPostingsByApplicant = async (req, res) => {
   //  start by grabbing the job applications
   const jobApplications = await JobApplication.find({ applicantId: id })
 
-  const jobPostingsAppliedTo = []
+  //console.log("jobApplications:", jobApplications)
+
+  const jobPostingsAppliedTo = new Set();
   //  make list of job postings by job application 
   jobApplications.forEach(async jobApplication => {
 
@@ -155,17 +157,24 @@ const getAllJobPostingsByApplicant = async (req, res) => {
       return res.status(404).json({error: 'one of the jobPostings from the jobApplications doesnt exist'})
     }
   
-    jobPosting = await JobPosting.findById(jobApplication.jobPostingId)
-    jobPostingsAppliedTo.push(jobPosting) }
+    var jobPosting = await JobPosting.findById(jobApplication.jobPostingId)
+    console.log("jobApplication: ", jobApplication)
+    console.log("jobPosting:", jobPosting)
+    console.log(typeof(jobPosting))
 
-    )
+    jobPostingsAppliedTo.add(jobPosting)
+    jobPostingsAppliedTo.add({name: "steben"})
+    })
 
-  if (!jobPostings) {
-    return res.status(404).json({ error: 'No such jobPosting' })
-  }
+    jobPostingsAppliedTo.add({name: "janathan"})
 
-  res.status(200).json(jobPostings)
+    console.log("jobPostingsAppliedTo:", jobPostingsAppliedTo)
+
+  res.status(200).json(jobPostingsAppliedTo)
 }
+*/
+
+
 
 
 module.exports = {
@@ -175,5 +184,5 @@ module.exports = {
   deleteJobPosting,
   updateJobPosting,
   getAllJobPostingsByEmployer,
-  getAllJobPostingsByApplicant
+  //getAllJobPostingsByApplicant
 }

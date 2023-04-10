@@ -68,17 +68,14 @@ const createJobApplication = async (req, res) => {
   }
 
   //  add the applicant to the list of applicants of the jobPosting
-
   try {
     var applicantToAdd = null
     await Applicant.findById(applicantId).exec().then(function(doc) {
       console.log("doc: ", doc)
       applicantToAdd = doc;
     });
-
     console.log("applicantToAdd:", applicantToAdd)
     //console.log(typeof(applicantToAdd))
-
     const jobPosting = await JobPosting.findOneAndUpdate({ _id: jobPostingId }, {
       //  $push adds the new applicant to the existing array inside the jobPosting
       $push: { applicants: applicantToAdd }
@@ -88,7 +85,28 @@ const createJobApplication = async (req, res) => {
     console.log("caught error pushing applicant")
     console.log(error)
     res.status(400).json({error: error.message})
-  }  
+  }
+
+  //  add the jobPosting to the list of jobPostings of the applicant
+  try {
+    var jobPostingToAdd = null
+    await JobPosting.findById(jobPostingId).exec().then(function(doc) {
+      console.log("doc: ", doc)
+      jobPostingToAdd = doc;
+    });
+    console.log("jobPostingToAdd:", jobPostingToAdd)
+    //console.log(typeof(jobPostingToAdd))
+    const applicant = await Applicant.findOneAndUpdate({ _id: applicantId }, {
+      //  $push adds the new jobPostings to the existing array inside the applicant
+
+      $push: { jobPostingsAppliedTo: jobPostingToAdd }
+    })
+  } catch (error)
+  {
+    console.log("caught error pushing jobPosting")
+    console.log(error)
+    res.status(400).json({error: error.message})
+  }
 
   // add doc to db
   try {
@@ -101,9 +119,6 @@ const createJobApplication = async (req, res) => {
     //console.log("caught error")
     res.status(400).json({error: error.message})
   }
-
-  
-
 }
 
 // delete a jobApplication
