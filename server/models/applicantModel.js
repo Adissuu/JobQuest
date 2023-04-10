@@ -15,11 +15,10 @@ const applicantSchema = new Schema({
     required: false
   },
 
-  //  removed because it creates a circular dependency 
-  //  jobPostingsAppliedTo: {
-  //  type: Array(JobPosting),
-  //  required: false
-  // }
+
+  // removed because it creates a circular dependency 
+  jobPostingsAppliedTo: { type: [JobPosting], required: false  }
+  
 
 }, { timestamps: true })
 
