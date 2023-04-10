@@ -152,7 +152,6 @@ const getAllJobPostingsByEmployer = async (req, res) => {
 
 /*
 OLD METHOD DO NOT USE
-
 // get all jobPostings applied to by a specific applicant
 const getAllJobPostingsByApplicant = async (req, res) => {
   const { id } = req.params
@@ -192,7 +191,6 @@ const getAllJobPostingsByApplicant = async (req, res) => {
   res.status(200).json(jobPostingsAppliedTo)
 }
 */
-
 
 module.exports = {
   getJobPostings,
