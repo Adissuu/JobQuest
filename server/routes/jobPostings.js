@@ -35,7 +35,7 @@ router.patch('/:id', updateJobPosting)
 router.get('/employer/:id', getAllJobPostingsByEmployer)
 
 // GET all job postings by applicant
-//router.get('/applicant/:id', getAllJobPostingsByApplicant)
+router.get('/applicant/:id', getAllJobPostingsByApplicant)
 
 
 

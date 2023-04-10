@@ -1,4 +1,6 @@
 const JobPosting = require('../models/jobPostingModel')
+const Applicant = require('../models/applicantModel')
+
 const JobApplication = require('../models/jobApplicationModel')
 const mongoose = require('mongoose')
 
@@ -26,6 +28,22 @@ const getJobPosting = async (req, res) => {
   res.status(200).json(jobPosting)
 }
 
+//  get jobPostings for a specified applicant
+const getAllJobPostingsByApplicant = async (req, res) => {
+  const { id } = req.params
+  //console.log(req)
+  //console.log(id)
+
+  const applicant = await Applicant.findById( id )
+  //console.log(applicant);
+
+  if (!applicant) {
+    return res.status(404).json({ error: 'No such jobPosting' })
+  }
+  const jobPostings = applicant.jobPostingsAppliedTo
+
+  res.status(200).json(jobPostings)
+}
 
 // create new jobPosting
 const createJobPosting = async (req, res) => {
@@ -113,7 +131,6 @@ const updateJobPosting = async (req, res) => {
   res.status(200).json(JobPosting)
 }
 
-
 // get all jobPostings for a specified employer
 const getAllJobPostingsByEmployer = async (req, res) => {
   const { id } = req.params
@@ -134,6 +151,8 @@ const getAllJobPostingsByEmployer = async (req, res) => {
 }
 
 /*
+OLD METHOD DO NOT USE
+
 // get all jobPostings applied to by a specific applicant
 const getAllJobPostingsByApplicant = async (req, res) => {
   const { id } = req.params
@@ -175,8 +194,6 @@ const getAllJobPostingsByApplicant = async (req, res) => {
 */
 
 
-
-
 module.exports = {
   getJobPostings,
   getJobPosting,
@@ -184,5 +201,5 @@ module.exports = {
   deleteJobPosting,
   updateJobPosting,
   getAllJobPostingsByEmployer,
-  //getAllJobPostingsByApplicant
+  getAllJobPostingsByApplicant
 }
