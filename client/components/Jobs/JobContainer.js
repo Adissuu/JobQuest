@@ -8,16 +8,16 @@ function JobContainer(props) {
 
   if (!props.showDescription) {
     return (
-        <div>
-          <JobList jobs={jobs} />
-        </div>
-      );
-    
+      <div>
+        <JobList jobs={jobs} />
+      </div>
+    );
+
   }
-    const router = useRouter();
+  const router = useRouter();
 
 
-    ////LOAD JOBS////////////////////////////////////////////////////
+  ////LOAD JOBS////////////////////////////////////////////////////
   const [jobs, setJobs] = useState([]);
   const [promiseFulfilled, setPromiseFulfilled] = useState(false);
 
@@ -31,7 +31,8 @@ function JobContainer(props) {
       .catch((error) => console.log(error));
     await promise;
   };
-  //////////////////////////////////////////////////////////////////////
+
+
 
   ////LOAD EMPLOYER////////////////////////////////////////////////////////
   const [employer, setEmployer] = useState(null);
@@ -49,14 +50,14 @@ function JobContainer(props) {
   };
 
 
-  
+
   /////////////////////////////////////////////////////////////////////////////
-  
+
   ////LOAD JOB//////////////////////////////////////////////////////////////////
   const [job, setJob] = useState(null);
   const [promiseFulfilled3, setPromiseFulfilled3] = useState(false);
-    
-  
+
+
   const loadJob = async () => {
     const promise = singlePost(router.query.id).then((result) => {
       setPromiseFulfilled3(true);
@@ -67,9 +68,9 @@ function JobContainer(props) {
     await promise;
   };
 
-  
 
- 
+
+
   /////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
@@ -78,13 +79,14 @@ function JobContainer(props) {
     loadEmployer();
   }, [router.query.id]);
 
-  if (!promiseFulfilled ||!promiseFulfilled2||!promiseFulfilled3  || !job) return <div>Loading</div>;
-  
+  if (!promiseFulfilled || !promiseFulfilled2 || !promiseFulfilled3 || !job) return <div>Loading</div>;
+
   return (
-      <div>
-        <JobList jobs={jobs} />
-        <JobDescription employer={employer} job={job}/>
-      </div>
-    );
+    <div>
+
+      <JobList jobs={jobs} />
+      <JobDescription employer={employer} job={job} />
+    </div>
+  );
 }
 export default JobContainer;
