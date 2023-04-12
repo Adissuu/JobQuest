@@ -157,6 +157,27 @@ const updateJobApplication = async (req, res) => {
   res.status(200).json(jobApplication)
 }
 
+const hasApplicantAlreadyAppliedToPosting = async (req, res) => {
+  //  grab applicant and jobPosting from request
+  const {applicantId} = req.body;
+  const {jobPostingId} = req.body;
+
+  //  validate applicant and jobPosting
+  if (!mongoose.Types.ObjectId.isValid(applicantId)) {
+    console.log(applicantId)
+    return res.status(404).json({error: 'No such applicant'})
+
+  }
+  if (!mongoose.Types.ObjectId.isValid(jobPostingId)) {
+    return res.status(404).json({error: 'No such jobPosting'})
+  }
+
+  var exists = await JobApplication.exists({applicantId: applicantId, jobPostingId: jobPostingId})
+
+  res.send(200, {result: exists})
+}
+
+
 
 
 
@@ -168,4 +189,5 @@ module.exports = {
   createJobApplication,
   deleteJobApplication,
   updateJobApplication,
+  hasApplicantAlreadyAppliedToPosting
 }
