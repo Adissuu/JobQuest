@@ -5,6 +5,7 @@ const {
     createJobApplication,
     deleteJobApplication,
     updateJobApplication,
+    hasApplicantAlreadyAppliedToPosting
   } = require('../controllers/jobApplicationController')
 
 const requireAuth = require('../middleware/requireAuth')
@@ -28,6 +29,8 @@ router.delete('/:id', deleteJobApplication)
 
 // UPDATE a jobApplication
 router.patch('/:id', updateJobApplication)
+
+router.post('/hasApplied', hasApplicantAlreadyAppliedToPosting)
 
 
 module.exports = router
