@@ -6,20 +6,22 @@ import styles from "../../styles/Jobs/jobs.module.css";
 import { listJobs, singlePost /*, listEmployers*/ } from "@/actions/post";
 import { isAuth } from "@/actions/auth";
 const Jobs2 = (props) => {
-  if (!isAuth())
-    return (
+  const router = useRouter();
+
+  {
+    !isAuth() && (
       <Layout pathname={router.query.user ? "manage" : "jobs"}>
         <h1>Please log in to view this page</h1>
       </Layout>
-    );
+    )
+  }
   const { jobs, currentJob /*, employers*/ } = props;
 
-  const router = useRouter();
+
 
   console.log(`router.quer from JOBDESCRIPTION ${router.query.user}`);
   return (
     <Layout pathname={router.query.user ? "manage" : "jobs"}>
-      <h1>JobList with specific job description page</h1>
       <div className={styles.jobcontainer}>
         <JobList jobs={jobs} /*employers={employers}*/ />
         <JobDescription
