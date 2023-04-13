@@ -19,7 +19,7 @@ const ApplyForm = () => {
     try {
       setRequestStatus("pending");
       await fetch(
-        `http://localhost:5000/jobPosting/${
+        `http://localhost:4000/jobPosting/${
           router.query.id ? `update/${router.query.id}` : "add"
         }`,
         {
