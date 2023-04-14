@@ -1,6 +1,7 @@
 import Layout from "@/components/UI/Layout"
-import PostForm from "@/components/Posts/PostForm";
+import AddPostForm from "@/components/Posts/AddPostForm";
 import { useRouter } from "next/router";
+import UpdatePostForm from "@/components/Posts/UpdatePostForm";
 
 const NewPost = () => {
     const router = useRouter();
@@ -8,7 +9,7 @@ const NewPost = () => {
     return (
     <>
       <Layout pathname={router.query.id?"manage":"post"}>
-        <PostForm/>
+        {router.query.id? <UpdatePostForm/> : <AddPostForm/>}
       </Layout>
     </>
     )
