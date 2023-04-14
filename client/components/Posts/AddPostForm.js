@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { getCookie, isAuth } from "@/actions/auth";
 
-const PostForm = () => {
+const AddPostForm = () => {
 
   const router = useRouter();
+  const token = getCookie('token')
+  const user = isAuth()._id
 
   const [jobTitle, setJobTitle] = useState('');
   const [jobType, setJobType] = useState('');
   const [location, setLocation] = useState('');
-  const [remote, setRemote] = useState('');
+  const [remote, setRemote] = useState(false);
   const [description, setDescription] = useState('');
   const [employerId, setEmployerId] = useState('');
   const [employerName, setEmployerName] = useState('');
@@ -19,7 +22,8 @@ const PostForm = () => {
       event.preventDefault();
       try {
         setRequestStatus('pending');
-      await fetch(`http://localhost:8000/api/jobPostings/${router.query.id?`update/${router.query.id}`:"add"}`, {
+      await fetch(`http://localhost:8000/api/jobPostings`, 
+      {
         method: 'POST',
         body: JSON.stringify({
           jobTitle: jobTitle,
@@ -28,10 +32,13 @@ const PostForm = () => {
           remote: remote,
           description: description,
           employerName: employerName,
-          employerWebsite: employerWebsite
+          employerWebsite: employerWebsite,
+          employerId: user
         }),
         headers: {
+          'Accept': 'application/json',
           'Content-Type':'application/json',
+          Authorization: `Bearer ${token}`
         }
       });
       setRequestStatus('success');
@@ -146,4 +153,4 @@ const PostForm = () => {
     )
 }
 
-export default PostForm;
+export default AddPostForm;
