@@ -157,6 +157,7 @@ const updateJobApplication = async (req, res) => {
   res.status(200).json(jobApplication)
 }
 
+//  check if an applicant already applied to a posting
 const hasApplicantAlreadyAppliedToPosting = async (req, res) => {
   //  grab applicant and jobPosting from request
   const {applicantId} = req.body;
